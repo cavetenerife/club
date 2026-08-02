@@ -3,378 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estatutos Oficiales | C.A.V.E. Tenerife</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #0d0d0d;
-            --surface-color: #141414;
-            --border-color: #262626;
-            --text-main: #e5e5e5;
-            --text-muted: #a3a3a3;
-            --accent: #d4af37; /* Warm Gold */
-            --accent-glow: rgba(212, 175, 55, 0.15);
-            --font-heading: 'Syne', sans-serif;
-            --font-body: 'Space Grotesk', sans-serif;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: var(--font-body);
-            line-height: 1.7;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-        }
-
-        /* Subtle background vinyl groove pattern */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: radial-gradient(circle at 50% 50%, rgba(20, 20, 20, 0.5) 0%, rgba(13, 13, 13, 1) 80%),
-                        repeating-radial-gradient(circle at 50% 50%, transparent 0, transparent 3px, rgba(255, 255, 255, 0.015) 4px, transparent 5px);
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .container {
-            max-width: 900px;
-            width: 100%;
-            padding: 3rem 1.5rem;
-        }
-
-        header {
-            text-align: center;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 2.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .badge {
-            display: inline-block;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--accent);
-            border: 1px solid var(--accent);
-            padding: 0.35rem 0.8rem;
-            margin-bottom: 1rem;
-            background: var(--accent-glow);
-        }
-
-        h1 {
-            font-family: var(--font-heading);
-            font-size: 2.2rem;
-            text-transform: uppercase;
-            letter-spacing: -0.5px;
-            line-height: 1.2;
-            margin-bottom: 0.5rem;
-            color: #ffffff;
-        }
-
-        .subtitle {
-            font-size: 1rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        nav.table-of-contents {
-            background-color: var(--surface-color);
-            border: 1px solid var(--border-color);
-            padding: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        nav.table-of-contents h3 {
-            font-family: var(--font-heading);
-            font-size: 1rem;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 1rem;
-        }
-
-        nav.table-of-contents ul {
-            list-style: none;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 0.5rem 1.5rem;
-        }
-
-        nav.table-of-contents a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.2s ease;
-        }
-
-        nav.table-of-contents a:hover {
-            color: var(--accent);
-        }
-
-        section {
-            background-color: var(--surface-color);
-            border: 1px solid var(--border-color);
-            padding: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        h2 {
-            font-family: var(--font-heading);
-            font-size: 1.3rem;
-            color: var(--accent);
-            text-transform: uppercase;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 0.75rem;
-            margin-bottom: 1.5rem;
-        }
-
-        h3 {
-            font-size: 1.05rem;
-            color: #ffffff;
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
-        }
-
-        p {
-            color: var(--text-main);
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-        }
-
-        ul, ol {
-            margin-left: 1.25rem;
-            margin-bottom: 1rem;
-            color: var(--text-main);
-            font-size: 0.95rem;
-        }
-
-        li {
-            margin-bottom: 0.5rem;
-        }
-
-        .highlight {
-            color: #ffffff;
-            font-weight: 600;
-        }
-
-        footer {
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-            padding-top: 2rem;
-            margin-top: 3rem;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                padding: 1.5rem 1rem;
-            }
-
-            section {
-                padding: 1.25rem;
-            }
-
-            h1 {
-                font-size: 1.6rem;
-            }
-        }
-    </style>
+    <title>C.A.V.E. - Club de Aficionados al Vinilo Exclusivo (Tenerife)</title>
 </head>
-<body>
+<body bgcolor="#000000" text="#00FF00" link="#00FFFF" vlink="#FF00FF" alink="#FF0000">
 
-<div class="container">
+    <!-- HEADER / HERO SECTION -->
+    <center>
+        <font size="6" face="Courier New, monospace"><b>==================================================</b></font><br>
+        <font size="7" face="Times New Roman, serif"><b>C.A.V.E.</b></font><br>
+        <font size="5" face="Courier New, monospace"><b>Club de Aficionados al Vinilo Exclusivo</b></font><br>
+        <font size="4" face="Courier New, monospace"><i>[ Tenerife ]</i></font><br>
+        <font size="6" face="Courier New, monospace"><b>==================================================</b></font>
+        <br><br>
+        <font size="4" face="Verdana, sans-serif" color="#FFFFFF">
+            El refugio del sonido analógico en el Atlántico. Preservamos la cultura de la alta fidelidad, la joya en surco y el ritual del formato físico en un entorno diseñado por y para melómanos.
+        </font>
+        <br><br>
+        <table border="1" bgcolor="#111111" cellpadding="5" cellspacing="0">
+            <tr>
+                <td><font face="Courier New, monospace"><a href="#unete"><b>[ Formar parte del Club ]</b></a></font></td>
+                <td><font face="Courier New, monospace"><a href="#pilares"><b>[ Calendario de Sesiones ]</b></a></font></td>
+            </tr>
+        </table>
+    </center>
 
-    <header>
-        <div class="badge">Documento Oficial de Constitución</div>
-        <h1>Estatutos de la Asociación Cultural</h1>
-        <div class="subtitle">Club de Aficionados al Vinilo Exclusivo (C.A.V.E.) — Tenerife</div>
-    </header>
+    <br><hr size="3" color="#00FF00"><br>
 
-    <nav class="table-of-contents">
-        <h3>Índice de los Estatutos</h3>
-        <ul>
-            <li><a href="#titulo1">Título I: Denominación, Duración y Domicilio</a></li>
-            <li><a href="#titulo2">Título II: Fines y Actividades</a></li>
-            <li><a href="#titulo3">Título III: De los Socios y Régimen Disciplinario</a></li>
-            <li><a href="#titulo4">Título IV: Órganos de Gobierno</a></li>
-            <li><a href="#titulo5">Título V: Régimen Económico y Documental</a></li>
-            <li><a href="#titulo6">Título VI: Disolución y Liquidación</a></li>
-        </ul>
-    </nav>
+    <!-- MANIFIESTO / SOBRE NOSOTROS -->
+    <table border="2" bordercolor="#00FF00" bgcolor="#050505" width="100%" cellpadding="15" cellspacing="0">
+        <tr>
+            <td>
+                <center>
+                    <font size="5" face="Times New Roman, serif" color="#FFFF00"><b>--- NUESTRO MANIFIESTO ---</b></font>
+                </center>
+                <br>
+                <font size="4" face="Times New Roman, serif" color="#FFFFFF">
+                    <p><b>Resistencia analógica desde la isla.</b></p>
+                    <p>En un ecosistema hiperconectado donde la música se ha convertido en un consumo efímero, <b>C.A.V.E. (Club de Aficionados al Vinilo Exclusivo)</b> se constituye como una institución dedicada al culto, preservación y divulgación del sonido físico.</p>
+                    <p>Nacemos en Tenerife con la firme misión de tejer una red subterránea y selecta de coleccionistas, audiófilos y artesanos del audio. No entendemos el vinilo como una moda vintage, sino como el estándar definitivo de fidelidad sonora, expresión artística y ritual social.</p>
+                    <p>Desde nuestra sede, operamos como un punto de encuentro para el intercambio ético de prensa rara, la formación técnica en equipos Hi-Fi y la activación de la escena local a través de alianzas con tiendas independientes y espacios culturales de la isla.</p>
+                </font>
+            </td>
+        </tr>
+    </table>
 
-    <!-- TÍTULO I -->
-    <section id="titulo1">
-        <h2>Título I: Denominación, Naturaleza, Duración, Domicilio y Ámbito</h2>
-        
-        <h3>Artículo 1. Denominación y Naturaleza</h3>
-        <p>Con la denominación <span class="highlight">Club de Aficionados al Vinilo Exclusivo (C.A.V.E.)</span>, se constituye una asociación cultural sin ánimo de lucro, al amparo de la legislación vigente reguladora del Derecho de Asociación, dotada de personalidad jurídica propia y plena capacidad de obrar para el cumplimiento de sus fines.</p>
-        
-        <h3>Artículo 2. Duración</h3>
-        <p>La asociación se constituye por <span class="highlight">tiempo indefinido</span>, iniciando sus actividades a partir de la fecha del otorgamiento de su Acta Fundacional.</p>
-        
-        <h3>Artículo 3. Domicilio Social y Ámbito de Actuación</h3>
-        <ol>
-            <li>El domicilio social de la asociación se establece en <span class="highlight">Tenerife, Islas Canarias, España</span>.</li>
-            <li>El ámbito territorial en el que desarrollará principalmente sus actividades es <span class="highlight">Autonómico (Canarias)</span>, sin perjuicio de proyectar sus actuaciones, alianzas e intercambios a nivel nacional e internacional.</li>
-        </ol>
-    </section>
+    <br><hr size="3" color="#00FF00"><br>
 
-    <!-- TÍTULO II -->
-    <section id="titulo2">
-        <h2>Título II: Fines y Actividades</h2>
-        
-        <h3>Artículo 4. Fines Principales</h3>
-        <p>La asociación persigue los siguientes objetivos primordiales:</p>
-        <ul>
-            <li><span class="highlight">Preservación del Patrimonio Analógico:</span> Promover, salvaguardar y poner en valor la música en soporte analógico y su cultura dentro de un entorno sociocultural eminentemente digitalizado.</li>
-            <li><span class="highlight">Dinamización del Mercado del Vinilo:</span> Facilitar a la comunidad la adquisición, el intercambio, la venta responsable y la localización de ediciones exclusivas, descatalogadas o de alta fidelidad.</li>
-            <li><span class="highlight">Divulgación y Formación:</span> Organizar eventos culturales, talleres (<em>workshops</em>), sesiones de escucha (<em>listening sessions</em>), <em>jam sessions</em> y tiendas efímeras (<em>pop-up stores</em>).</li>
-            <li><span class="highlight">Tejido Local y Colaboración:</span> Fomentar alianzas estratégicas con tiendas de discos independientes, comercios locales, artistas y artesanos del sector del audio en Tenerife.</li>
-            <li><span class="highlight">Revalorización del Arte Físico:</span> Destacar la dimensión artística integral del disco de vinilo (arte de portada, prensado, notas de encastre y el ritual de escucha).</li>
-        </ul>
+    <!-- EJES DE ACTUACION / PILARES -->
+    <a name="pilares"></a>
+    <center>
+        <font size="5" face="Courier New, monospace" color="#00FFFF"><b>/// EJES DE ACTUACIÓN ///</b></font>
+    </center>
+    <br>
 
-        <h3>Artículo 5. Actividades</h3>
-        <p>Para la consecución de sus fines, el Club desarrollará las siguientes líneas de acción:</p>
-        <ul>
-            <li>Mercados e intercambios periódicos de vinilos para socios y público general.</li>
-            <li>Sesiones de escucha guiadas con equipos de alta fidelidad (Hi-Fi).</li>
-            <li>Talleres de conservación de discos, calibración de giradiscos y restauración de equipos de sonido vintage.</li>
-            <li>Encuentros musicales, eventos en vivo y <em>jam sessions</em>.</li>
-            <li><em>Pop-up stores</em> y muestras itinerantes en colaboración con comercios y espacios de la comunidad.</li>
-        </ul>
-    </section>
+    <table border="1" bordercolor="#00FFFF" width="100%" cellpadding="10" cellspacing="2" bgcolor="#0A0A0A">
+        <tr bgcolor="#1A1A1A">
+            <th align="left" width="50%"><font size="4" face="Courier New, monospace" color="#FF00FF">01. Archivo y Conservación</font></th>
+            <th align="left" width="50%"><font size="4" face="Courier New, monospace" color="#FF00FF">02. Mercado Selecto</font></th>
+        </tr>
+        <tr>
+            <td valign="top">
+                <font size="3" face="Arial, sans-serif" color="#FFFFFF">
+                    Custodiamos y divulgamos la memoria musical en soporte físico, promoviendo el cuidado técnico, la restauración de audio vintage y el valor del arte gráfico en cada edición.
+                </font>
+            </td>
+            <td valign="top">
+                <font size="3" face="Arial, sans-serif" color="#FFFFFF">
+                    Facilitamos una plataforma privada y transparente entre socios para la adquisición, venta e trueque de copias descatalogadas, primeras prensas y ediciones de coleccionista.
+                </font>
+            </td>
+        </tr>
+        <tr bgcolor="#1A1A1A">
+            <th align="left"><font size="4" face="Courier New, monospace" color="#FF00FF">03. Cultura de Escucha (Sessions & Pop-Ups)</font></th>
+            <th align="left"><font size="4" face="Courier New, monospace" color="#FF00FF">04. Ecosistema Local</font></th>
+        </tr>
+        <tr>
+            <td valign="top">
+                <font size="3" face="Arial, sans-serif" color="#FFFFFF">
+                    Organizamos desde la clandestinidad cultural: <i>Listening Sessions</i> con sistemas de sonido de alta fidelidad, <i>Pop-Up Stores</i> itinerantes, talleres de calibración y <i>Jam Sessions</i> en directo.
+                </font>
+            </td>
+            <td valign="top">
+                <font size="3" face="Arial, sans-serif" color="#FFFFFF">
+                    Impulsamos la red cultural de Tenerife, colaborando con sellos independientes, tiendas de discos locales y espacios de resistencia creativa.
+                </font>
+            </td>
+        </tr>
+    </table>
 
-    <!-- TÍTULO III -->
-    <section id="titulo3">
-        <h2>Título III: De los Socios: Admisión, Pérdida de Condición y Régimen Disciplinario</h2>
-        
-        <h3>Artículo 6. Categorías de Socios</h3>
-        <ul>
-            <li><span class="highlight">Socios Fundadores:</span> Quienes firmen el Acta Fundacional.</li>
-            <li><span class="highlight">Socios Numéricos (Activos):</span> Personas físicas que soliciten su ingreso, sean admitidas por la Junta Directiva y estén al día con sus cuotas.</li>
-            <li><span class="highlight">Socios Protectores / Colaboradores:</span> Personas físicas o jurídicas que apoyen económicamente o con recursos a la asociación.</li>
-            <li><span class="highlight">Socios de Honor:</span> Personas o entidades reconocidas por su notable contribución a la preservación del audio analógico.</li>
-        </ul>
+    <br><hr size="3" color="#00FF00"><br>
 
-        <h3>Artículo 7. Admisión de Socios</h3>
-        <p>Para adquirir la condición de socio se requerirá ser persona física con plena capacidad de obrar (o menor emancipado), presentar solicitud por escrito a la Junta Directiva y ser aceptado formalmente por la misma.</p>
+    <!-- CALL TO ACTION / MEMBERSHIP -->
+    <a name="unete"></a>
+    <center>
+        <table border="3" bordercolor="#FF0000" bgcolor="#110000" width="80%" cellpadding="15" cellspacing="0">
+            <tr>
+                <td align="center">
+                    <font size="5" face="Courier New, monospace" color="#FF0000"><b>[ EL ACCESO A LA CUEVA ]</b></font>
+                    <br><br>
+                    <font size="3" face="Verdana, sans-serif" color="#FFFFFF">
+                        C.A.V.E. es una entidad cultural de acceso regulado para garantizar la calidad de la comunidad y el respeto por el formato. Si buscas huir del algoritmo, compartir tu colección y acceder a eventos de escucha privada en Tenerife, tu sitio está aquí.
+                    </font>
+                    <br><br>
+                    <table border="1" bgcolor="#220000" cellpadding="8" cellspacing="0">
+                        <tr>
+                            <td>
+                                <font size="4" face="Courier New, monospace">
+                                    <a href="mailto:info@cave-tenerife.org"><font color="#FFFF00"><b>&gt;&gt; Solicitar Admisión de Socio &lt;&lt;</b></font></a>
+                                </font>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </center>
 
-        <h3>Artículo 8. Derechos de los Socios</h3>
-        <ul>
-            <li>Participar en las actividades, eventos, talleres y <em>pop-ups</em> de la asociación.</li>
-            <li>Disfrutar de acceso prioritario a los mercados de intercambio de C.A.V.E.</li>
-            <li>Ejercer el derecho a voz y voto en las Asambleas Generales (un voto por socio).</li>
-            <li>Elegir y ser elegibles para los cargos de la Junta Directiva.</li>
-            <li>Formular peticiones, sugerencias y examinar los libros oficiales de la asociación previa solicitud formal.</li>
-        </ul>
-
-        <h3>Artículo 9. Deberes de los Socios</h3>
-        <ul>
-            <li>Acatar los presentes Estatutos y los acuerdos válidamente adoptados por los órganos de gobierno.</li>
-            <li>Abonar puntualmente las cuotas periódicas y extraordinarias que fije la Asamblea General.</li>
-            <li>Colaborar en la consecución de los fines del Club y mantener una conducta ética en el intercambio de material discográfico.</li>
-        </ul>
-
-        <h3>Artículo 10. Pérdida de la Condición de Socio</h3>
-        <p>La condición de socio se perderá por cualquiera de las siguientes causas:</p>
-        <ol>
-            <li>Renuncia voluntaria comunicada por escrito a la Junta Directiva.</li>
-            <li>Impago injustificado de dos cuotas consecutivas, previo requerimiento formal.</li>
-            <li>Sanción de expulsión acordada por la Junta Directiva en expediente disciplinario.</li>
-        </ol>
-
-        <h3>Artículo 11. Régimen Disciplinario</h3>
-        <ol>
-            <li>Los socios podrán ser sancionados por el incumplimiento grave y reiterado de los Estatutos o por conductas que perjudiquen gravemente la imagen o el patrimonio del Club.</li>
-            <li>Las sanciones podrán ir desde la amonestación verbal o suspensión temporal de derechos, hasta la <span class="highlight">expulsión definitiva</span>.</li>
-            <li>Todo procedimiento disciplinario garantizará el derecho de audiencia al interesado, requiriéndose la notificación de los cargos, un plazo de <span class="highlight">10 días hábiles</span> para presentar alegaciones y la posterior resolución motivada por parte de la Junta Directiva. El sancionado podrá recurrir la decisión ante la primera Asamblea General que se celebre.</li>
-        </ol>
-    </section>
-
-    <!-- TÍTULO IV -->
-    <section id="titulo4">
-        <h2>Título IV: Órganos de Gobierno y Administración</h2>
-        
-        <h3>Artículo 12. La Asamblea General</h3>
-        <p>La Asamblea General es el órgano supremo de gobierno de la asociación y estará integrada por todos los socios. Sus acuerdos son de obligado cumplimiento para la totalidad de sus miembros.</p>
-
-        <h3>Artículo 13. Convocatoria y Quórum de la Asamblea General</h3>
-        <ol>
-            <li><span class="highlight">Asamblea General Ordinaria:</span> Se reunirá obligatoriamente una vez al año dentro del primer cuatrimestre para aprobar la gestión de la Junta Directiva, las cuentas del ejercicio anterior y el presupuesto del año en curso.</li>
-            <li><span class="highlight">Asamblea General Extraordinaria:</span> Se convocará cuando la Junta Directiva lo estime conveniente o cuando lo solicite al menos el 20% de los socios.</li>
-            <li><span class="highlight">Convocatoria:</span> Las Asambleas serán convocadas con al menos 15 días naturales de antelación mediante comunicación escrita (física o electrónica), incluyendo el Orden del Día.</li>
-            <li><span class="highlight">Quórum:</span> Quedará válidamente constituida en primera convocatoria cuando concurran a ella (presentes o representados) la mayoría absoluta de los socios (50% + 1). En segunda convocatoria (celebrada 30 minutos más tarde), quedará constituida cualquiera que sea el número de socios presentes.</li>
-        </ol>
-
-        <h3>Artículo 14. Adopción de Acuerdos de la Asamblea</h3>
-        <ol>
-            <li>Salvo disposición legal o estatutaria contraria, los acuerdos ordinarios se adoptarán por mayoría simple de votos emitidos.</li>
-            <li>Se requerirá una <span class="highlight">mayoría cualificada de 2/3</span> de las personas presentes o representadas para la modificación de Estatutos, disolución de la asociación o disposición/enajenación de bienes del patrimonio.</li>
-        </ol>
-
-        <h3>Artículo 15. La Junta Directiva</h3>
-        <p>La Junta Directiva es el órgano colegiado de representación, gestión y administración de la asociación. Estará formada por: Presidencia, Vicepresidencia, Secretaría, Tesorería y Vocalías (ej. Vocal de Eventos, Vocal de Relaciones Locales).</p>
-
-        <h3>Artículo 16. Duración y Elección de Cargos</h3>
-        <ol>
-            <li>Los miembros de la Junta Directiva serán elegidos por la Asamblea General por un período de <span class="highlight">2 años</span>, pudiendo ser reelegidos.</li>
-            <li>Los cargos de la Junta Directiva serán gratuitos y no remunerados, sin perjuicio del reembolso de los gastos debidamente justificados.</li>
-        </ol>
-    </section>
-
-    <!-- TÍTULO V -->
-    <section id="titulo5">
-        <h2>Título V: Régimen Económico y Documental</h2>
-        
-        <h3>Artículo 17. Patrimonio Inicial y Recursos Económicos</h3>
-        <p>El patrimonio inicial de la asociación en el momento de su constitución se fija en 0 €. Los recursos económicos de la asociación estarán constituidos por:</p>
-        <ul>
-            <li>Las cuotas periódicas y extraordinarias fijadas por la Asamblea General.</li>
-            <li>Los ingresos derivados de eventos, talleres, <em>pop-up stores</em> y publicaciones.</li>
-            <li>Subvenciones, donaciones, herencias o legados recibidos legalmente.</li>
-            <li>Patrocinios y aportaciones de socios protectores o empresas colaboradoras.</li>
-        </ul>
-
-        <h3>Artículo 18. Ejercicio Económico y Contabilidad</h3>
-        <ol>
-            <li>El ejercicio económico coincidirá con el año natural, cerrándose el <span class="highlight">31 de diciembre</span> de cada año.</li>
-            <li>La asociación llevará una contabilidad regular a través del Libro de Socios, Libro de Actas y Libros de Contabilidad (Balance, Ingresos y Gastos).</li>
-        </ol>
-    </section>
-
-    <!-- TÍTULO VI -->
-    <section id="titulo6">
-        <h2>Título VI: Disolución y Liquidación</h2>
-        
-        <h3>Artículo 19. Disolución</h3>
-        <p>La asociación se disolverá por acuerdo expreso adoptado en Asamblea General Extraordinaria convocada al efecto, con el voto favorable de al menos 2/3 de los presentes o representados, o por las causas determinadas en la ley.</p>
-
-        <h3>Artículo 20. Liquidación y Destino del Patrimonio</h3>
-        <p>En caso de disolución, tras abonar las deudas pendientes, el <span class="highlight">patrimonio neto resultante se donará íntegramente a una entidad sin ánimo de lucro</span> legalmente reconocida de carácter cultural o social que persiga fines análogos en el archipiélago canario. En ningún caso los bienes podrán ser repartidos entre los socios.</p>
-    </section>
-
-    <footer>
-        <p>&copy; Club de Aficionados al Vinilo Exclusivo (C.A.V.E.) — Santa Cruz de Tenerife / La Laguna, Tenerife.</p>
-        <p>Documento de estatutos adaptado para la presentación oficial de la asociación.</p>
-    </footer>
-
-</div>
+    <br><br>
+    <!-- FOOTER -->
+    <center>
+        <font size="2" face="Courier New, monospace" color="#888888">
+            ------------------------------------------------------------------<br>
+            C.A.V.E. Tenerife &copy; Club de Aficionados al Vinilo Exclusivo<br>
+            Sitio optimizado para resolución 1024x768 | Formato Análogo / Arte Físico
+        </font>
+    </center>
 
 </body>
 </html>
