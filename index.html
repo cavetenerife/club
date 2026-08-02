@@ -17,7 +17,7 @@
       box-sizing: border-box;
       font-family: "Courier New", Courier, monospace;
       font-size: 12px;
-      line-height: 1.25;
+      line-height: 1.3;
       user-select: none;
       -webkit-tap-highlight-color: transparent;
     }
@@ -79,7 +79,7 @@
     }
 
     .dos-tab {
-      flex: 1 1 calc(50% - 2px); /* 2x2 grid on small screens, 1 row on wider */
+      flex: 1 1 calc(50% - 2px);
       min-width: 0;
       padding: 6px 4px;
       color: var(--dos-white);
@@ -237,15 +237,35 @@
         <button class="dos-btn" onclick="switchTab(3)">> REGISTRAR NUEVO SOCIO</button>
       </div>
 
-      <!-- TAB 2: EJES ESTATUTARIOS -->
+      <!-- TAB 2: EJES ESTATUTARIOS & BENEFICIOS (EXTENDED) -->
       <div class="dos-panel">
         <div class="ascii-box">
-          <div class="ascii-box-title">> C:\CAVE\STATUTES.DAT</div>
-          <p><b>[01] ARCHIVO & CONSERVACIÓN</b><br>Custodia de prensajes históricos y mantenimiento Hi-Fi.</p>
-          <p><b>[02] MERCADO EXCLUSIVO</b><br>Intercambio privado de joyas descatalogadas entre miembros.</p>
-          <p><b>[03] CULTURA DE ESCUCHA</b><br>Listening Sessions privadas y Pop-Up stores locales.</p>
-          <p><b>[04] RED INDEPENDIENTE</b><br>Alianzas con tiendas físicas de discos en Canarias.</p>
+          <div class="ascii-box-title">> C:\CAVE\STATUTES_EXTENDED.DAT</div>
+          
+          <p><b>[01] ARCHIVO Y CONSERVACIÓN TÉCNICA</b><br>
+          Protección activa de la memoria analógica. Fomentamos el cuidado del vinilo mediante protocolos de limpieza ultrasónica, preservación de prensados originales y restauración técnica de sistemas de reproducción vintage y valvulares.</p>
+          
+          <p><b>[02] MERCADO PRIVADO Y COLECCIONISMO ÉTICO</b><br>
+          Plataforma de intercambio seguro entre miembros. Facilitamos la localización de ediciones raras, descatalogadas, test pressings e importaciones audiófilas (Japanese/German pressings), erradicando la especulación desmedida.</p>
+          
+          <p><b>[03] CULTURA DE ESCUCHA Y EVENTOS DE PRECISIÓN</b><br>
+          Organización de Listening Sessions con acústica tratada y equipamiento Hi-Fi de referencia. Fomentamos la audición íntegra de álbumes sin interrupciones digitales ni compresión dinámica.</p>
+          
+          <p><b>[04] RED INDEPENDIENTE CANARIA</b><br>
+          Fortalecimiento del tejido local mediante colaboraciones estratégicas con tiendas independientes de discos, artesanos del audio, diseñadores y espacios culturales en la isla de Tenerife.</p>
         </div>
+
+        <div class="ascii-box">
+          <div class="ascii-box-title">> C:\CAVE\BENEFITS.LOG</div>
+          <p><b>[BENEFICIOS EXCLUSIVOS DE SER SOCIO]</b></p>
+          <p><b>+ ACCESO A LISTENING SESSIONS:</b> Prioridad de reserva en sesiones privadas de escucha en sistemas de alta fidelidad.</p>
+          <p><b>+ RED DE INTERCAMBIO DIRECTO:</b> Acceso a la base de datos de compra, venta y trueque privado entre coleccionistas de la comunidad.</p>
+          <p><b>+ VENTAJAS EN COMERCIOS AFILIADOS:</b> Descuentos exclusivos en tiendas de discos locales y talleres de reparación de audio Hi-Fi en Tenerife.</p>
+          <p><b>+ TALLERES Y FORMACIÓN TÉCNICA:</b> Participación gratuita en workshops de calibración de cápsulas, ajuste de brazos y conservación de vinilos.</p>
+          <p><b>+ CATÁLOGO DE PRÉSTAMO EQUIPADO:</b> Acceso a herramientas especializadas del club (lavadoras de vinilos, galgas digitales, discos de testeo).</p>
+        </div>
+
+        <button class="dos-btn" onclick="switchTab(3)">> ADMITIRME COMO SOCIO</button>
       </div>
 
       <!-- TAB 3: AGENDA (COMING SOON) -->
