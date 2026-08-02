@@ -12,7 +12,6 @@
       --text-main: #ffffff;
       --text-dim: #777777;
       --groove-color: #222225;
-      --dot-color: #ffffff;
     }
 
     * {
@@ -47,14 +46,14 @@
       gap: 16px;
     }
 
-    /* --- TECHNICS SL-1200 STYLE TURNTABLE DECK --- */
+    /* --- TURNTABLE DECK --- */
     .technics-deck-area {
-      background: #000000;
+      background: #111111;
       border: 1px solid #333333;
       border-radius: 6px;
       padding: 12px;
       position: relative;
-      height: 260px;
+      height: 280px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -66,17 +65,14 @@
       cursor: grabbing;
     }
 
-    /* MAIN TURNTABLE PLATTER WITH STROBOSCOPIC DOT RING */
+    /* MAIN TURNTABLE PLATTER WITH OUTER WHITE/SILVER BEZEL */
     .technics-platter {
       width: 240px;
       height: 240px;
       border-radius: 50%;
-      background: radial-gradient(circle, #1a1a1d 68%, #000000 70%);
-      border: 6px repeating-conic-gradient(
-        var(--dot-color) 0deg 3deg,
-        #111113 3deg 9deg
-      );
-      box-shadow: inset 0 0 10px rgba(0,0,0,0.8), 0 0 15px rgba(0,0,0,0.9);
+      background: radial-gradient(circle, #18181a 68%, #0d0d0f 70%);
+      border: 5px solid #e0e0e0;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.9), 0 0 12px rgba(0,0,0,0.8);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -85,42 +81,38 @@
       will-change: transform;
     }
 
-    /* 12-INCH BLACK FELT SLIPMAT */
+    /* BLACK FELT SLIPMAT WITH CONCENTRIC TEXTURED RINGS */
     .slipmat {
-      width: 216px;
-      height: 216px;
+      width: 220px;
+      height: 220px;
       border-radius: 50%;
-      background: radial-gradient(circle, #25252a 0%, #121215 100%);
-      border: 1px dashed #ffffff;
-      color: #35353c;
+      background: repeating-radial-gradient(
+        circle at center,
+        #1a1a1d 0px,
+        #1a1a1d 2px,
+        #121214 3px,
+        #121214 5px
+      );
       display: flex;
       justify-content: center;
       align-items: center;
       position: relative;
-      box-shadow: inset 0 0 10px rgba(0,0,0,0.9);
+      box-shadow: inset 0 0 15px rgba(0,0,0,0.95);
     }
 
-    .slipmat-brand {
-      position: absolute;
-      font-size: 28px;
-      font-weight: 900;
-      letter-spacing: 4px;
-      pointer-events: none;
-    }
-
-    /* ACCURATELY SCALED 7-INCH VINYL RECORD (~130px) */
+    /* ACCURATELY SCALED 7-INCH VINYL RECORD */
     .vinyl-record-7inch {
-      width: 130px;
-      height: 130px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
       background: repeating-radial-gradient(
         circle at center,
-        #050505 0px,
-        #050505 2px,
+        #08080a 0px,
+        #08080a 2px,
         var(--groove-color) 3px,
-        #050505 4px
+        #08080a 4px
       );
-      box-shadow: 0 0 12px rgba(0,0,0,0.95), 0 0 2px rgba(255,255,255,0.4);
+      box-shadow: 0 0 10px rgba(0,0,0,0.9), 0 0 2px rgba(255,255,255,0.3);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -128,25 +120,24 @@
       z-index: 2;
     }
 
-    /* LARGER 45 RPM CENTER HOLE & SPIDER ADAPTER */
+    /* LARGE 45 RPM CENTER HOLE & GRADIENT LABEL (GRADIENT DERIVED FROM IMAGE) */
     .large-center-hole {
-      width: 72px;
-      height: 72px;
+      width: 76px;
+      height: 76px;
       border-radius: 50%;
-      background: #000000;
-      border: 2px solid #ffffff;
+      background: radial-gradient(circle, #ffcc00 0%, #ff5500 70%, #cc2200 100%);
+      border: 3px solid #111111;
       display: flex;
       justify-content: center;
       align-items: center;
       position: relative;
-      box-shadow: inset 0 0 5px rgba(255,255,255,0.3);
+      box-shadow: 0 0 6px rgba(0,0,0,0.5);
     }
 
-    /* 45 RPM SPIDER ADAPTER & PRINTED LABEL */
     .rpm45-adapter-label {
-      width: 62px;
-      height: 62px;
-      background: #ffffff;
+      width: 64px;
+      height: 64px;
+      background: transparent;
       border-radius: 50%;
       display: flex;
       flex-direction: column;
@@ -164,12 +155,97 @@
     .center-spindle {
       width: 8px;
       height: 8px;
-      background: #ffffff;
+      background: #e6e6e6;
       border-radius: 50%;
       border: 1px solid #000;
       position: absolute;
       z-index: 4;
       pointer-events: none;
+    }
+
+    /* --- BENT / S-SHAPED TONEARM IMPLEMENTATION --- */
+    .tonearm-assembly {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 140px;
+      height: 220px;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    /* Base Pivot Assembly */
+    .tonearm-base {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #d0d0d0 30%, #777777 70%, #333333 100%);
+      border: 2px solid #222222;
+      box-shadow: 2px 4px 8px rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .tonearm-pivot-inner {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ffffff 20%, #aaaaaa 80%);
+      border: 2px solid #555555;
+    }
+
+    /* Metallic Curved S-Arm */
+    .tonearm-arm {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      width: 100px;
+      height: 150px;
+      border: 5px solid transparent;
+      border-left: 5px solid #d8d8d8;
+      border-bottom: 5px solid #d8d8d8;
+      border-radius: 0 0 0 80px;
+      transform: rotate(-18deg);
+      transform-origin: top right;
+      filter: drop-shadow(2px 3px 3px rgba(0,0,0,0.5));
+    }
+
+    /* Headshell & Cartridge Assembly */
+    .tonearm-headshell {
+      position: absolute;
+      bottom: -10px;
+      left: -12px;
+      width: 18px;
+      height: 32px;
+      background: #222222;
+      border: 1px solid #555555;
+      border-radius: 2px;
+      transform: rotate(35deg);
+      box-shadow: 1px 2px 4px rgba(0,0,0,0.7);
+    }
+
+    .headshell-connector {
+      position: absolute;
+      top: -6px;
+      left: 3px;
+      width: 10px;
+      height: 6px;
+      background: #cccccc;
+      border-radius: 1px;
+    }
+
+    .finger-lift {
+      position: absolute;
+      bottom: 2px;
+      right: -8px;
+      width: 10px;
+      height: 2px;
+      background: #cccccc;
+      border-radius: 1px;
     }
 
     /* TRIGGER CONTROL BAR */
@@ -213,7 +289,7 @@
       color: #000000;
     }
 
-    /* --- BLACK AND WHITE RECEIVER DISPLAY SCREEN --- */
+    /* --- RECEIVER DISPLAY SCREEN --- */
     .receiver-display-unit {
       background: #000000;
       border: 1px solid #ffffff;
@@ -228,7 +304,7 @@
       background-color: #000000;
       color: var(--text-main);
       font-family: "Courier New", Courier, monospace;
-      min-height: 230px;
+      min-height: 210px;
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -244,7 +320,6 @@
       letter-spacing: 1px;
     }
 
-    /* MONOCHROME TABS */
     .lcd-tabs {
       display: flex;
       gap: 4px;
@@ -337,20 +412,14 @@
 
   <div class="hifi-system">
     
-    <!-- TOP SECTION: TECHNICS PLATTER WITH PROPORTIONAL 7" VINYL -->
+    <!-- TURNTABLE DECK AREA -->
     <div class="technics-deck-area" id="deck">
 
-      <!-- STROBOSCOPIC PLATTER RING -->
+      <!-- ROTATING PLATTER WITH VINYL -->
       <div class="technics-platter" id="platter">
-        
-        <!-- VISIBLE 12" BLACK FELT SLIPMAT -->
         <div class="slipmat" id="slipmat">
-          <div class="slipmat-brand">C.A.V.E.</div>
           
-          <!-- PROPORTIONAL 7-INCH VINYL RECORD -->
           <div class="vinyl-record-7inch">
-            
-            <!-- LARGER 45 RPM CENTER HOLE WITH ADAPTER -->
             <div class="large-center-hole">
               <div class="rpm45-adapter-label">
                 <span>C.A.V.E.</span>
@@ -358,14 +427,25 @@
                 <span>TENERIFE</span>
               </div>
             </div>
-
           </div>
 
         </div>
-
       </div>
 
       <div class="center-spindle"></div>
+
+      <!-- BENT TONEARM OVERLAY -->
+      <div class="tonearm-assembly">
+        <div class="tonearm-base">
+          <div class="tonearm-pivot-inner"></div>
+        </div>
+        <div class="tonearm-arm">
+          <div class="tonearm-headshell">
+            <div class="headshell-connector"></div>
+            <div class="finger-lift"></div>
+          </div>
+        </div>
+      </div>
 
     </div>
 
@@ -375,7 +455,7 @@
       <button class="trigger-btn" id="triggerBtn" onclick="toggleMotor()">TRIGGER SPIN</button>
     </div>
 
-    <!-- BOTTOM SECTION: B&W RECEIVER DISPLAY SCREEN -->
+    <!-- RECEIVER DISPLAY SCREEN -->
     <div class="receiver-display-unit">
       
       <div class="lcd-screen">
