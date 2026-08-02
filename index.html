@@ -3,30 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>C.A.V.E. Tenerife - Club de Aficionados al Vinilo Exclusivo</title>
+  <title>C.A.V.E. Tenerife - MS-DOS Executive</title>
   <style>
-    /* --- WIN95 MOBILE ENGINE --- */
+    /* --- DOS CRT / GREEN PHOSPHOR ENGINE --- */
     :root {
-      --bg-teal: #008080;
-      --win-bg: #c0c0c0;
-      --win-border-light: #ffffff;
-      --win-border-dark: #808080;
-      --win-border-black: #000000;
-      --win-blue: #000080;
-      --win-blue-light: #1084d0;
-      --win-text: #000000;
+      --dos-bg: #050b05;
+      --dos-green: #33ff33;
+      --dos-dim-green: #116611;
+      --dos-dark-green: #052205;
     }
 
     * {
       box-sizing: border-box;
-      font-family: "MS Sans Serif", Tahoma, Geneva, sans-serif;
-      font-size: 12px;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 13px;
+      line-height: 1.3;
       user-select: none;
       -webkit-tap-highlight-color: transparent;
     }
 
     body {
-      background-color: var(--bg-teal);
+      background-color: var(--dos-bg);
+      color: var(--dos-green);
       margin: 0;
       padding: 6px;
       height: 100vh;
@@ -34,394 +32,296 @@
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      color: var(--win-text);
+      text-shadow: 0 0 4px rgba(51, 255, 51, 0.4);
     }
 
-    /* --- MOBILE WORKSPACE --- */
-    #workspace {
+    /* --- CRT SCANLINE & GLOW EFFECT --- */
+    body::before {
+      content: " ";
+      display: block;
+      position: absolute;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+      background-size: 100% 4px;
+      z-index: 99;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    /* --- DOS ASCII FRAMEWORK --- */
+    #dos-container {
       flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      position: relative;
-    }
-
-    /* --- SINGLE WINDOW (MOBILE RESPONSIVE) --- */
-    .window {
-      background: var(--win-bg);
-      border-top: 2px solid var(--win-border-light);
-      border-left: 2px solid var(--win-border-light);
-      border-right: 2px solid var(--win-border-black);
-      border-bottom: 2px solid var(--win-border-black);
-      box-shadow: 1px 1px 0px var(--win-border-dark);
-      width: 100%;
-      max-width: 480px;
-      height: 100%;
-      max-height: 92vh;
+      border: 2px solid var(--dos-green);
       display: flex;
       flex-direction: column;
+      overflow: hidden;
+      background: var(--dos-dark-green);
     }
 
-    .title-bar {
-      background: linear-gradient(90deg, var(--win-blue), var(--win-blue-light));
-      padding: 4px 6px;
+    .dos-header {
+      background: var(--dos-green);
+      color: var(--dos-bg);
+      padding: 2px 6px;
+      font-weight: bold;
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      color: white;
-      font-weight: bold;
+      text-shadow: none;
     }
 
-    .title-bar-text {
+    /* --- NAVIGATION TABS (ASCII BOX STYLE) --- */
+    .dos-tabs {
       display: flex;
-      align-items: center;
-      gap: 6px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .title-bar-controls button {
-      width: 18px;
-      height: 16px;
-      font-size: 10px;
-      line-height: 10px;
-      padding: 0;
-      background: var(--win-bg);
-      border-top: 1px solid var(--win-border-light);
-      border-left: 1px solid var(--win-border-light);
-      border-right: 1px solid var(--win-border-black);
-      border-bottom: 1px solid var(--win-border-black);
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .window-body {
-      padding: 8px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    /* --- TABS SYSTEM --- */
-    .tabs {
-      display: flex;
-      border-bottom: 2px solid var(--win-border-dark);
-      margin-bottom: 8px;
+      border-bottom: 1px solid var(--dos-green);
+      background: var(--dos-bg);
       overflow-x: auto;
       white-space: nowrap;
     }
 
-    .tab {
+    .dos-tab {
       padding: 6px 10px;
-      background: var(--win-bg);
-      border-top: 2px solid var(--win-border-light);
-      border-left: 2px solid var(--win-border-light);
-      border-right: 2px solid var(--win-border-dark);
-      margin-right: 2px;
+      color: var(--dos-dim-green);
       cursor: pointer;
-      font-weight: normal;
+      border-right: 1px solid var(--dos-dim-green);
     }
 
-    .tab.active {
-      border-bottom: 2px solid var(--win-bg);
-      margin-bottom: -2px;
+    .dos-tab.active {
+      background: var(--dos-green);
+      color: var(--dos-bg);
       font-weight: bold;
-      background: var(--win-bg);
+      text-shadow: none;
     }
 
-    /* --- TAB CONTENT PANELS --- */
-    .tab-content {
-      display: none;
+    /* --- CONTENT AREA --- */
+    .dos-body {
       flex: 1;
-      flex-direction: column;
+      padding: 10px;
       overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      background: var(--dos-bg);
     }
 
-    .tab-content.active {
+    .dos-panel {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .dos-panel.active {
       display: flex;
     }
 
-    /* --- PANELS & FRAMES --- */
-    .sunken-panel {
-      border-top: 2px solid var(--win-border-dark);
-      border-left: 2px solid var(--win-border-dark);
-      border-right: 2px solid var(--win-border-light);
-      border-bottom: 2px solid var(--win-border-light);
-      background: white;
-      padding: 10px;
-      margin-bottom: 10px;
-    }
-
-    fieldset {
-      border-top: 2px solid var(--win-border-light);
-      border-left: 2px solid var(--win-border-light);
-      border-right: 2px solid var(--win-border-dark);
-      border-bottom: 2px solid var(--win-border-dark);
-      margin-bottom: 10px;
+    /* --- ASCII BOXES --- */
+    .ascii-box {
+      border: 1px dashed var(--dos-green);
       padding: 8px;
+      margin-bottom: 8px;
     }
 
-    legend {
+    .ascii-box-title {
       font-weight: bold;
+      border-bottom: 1px solid var(--dos-dim-green);
+      padding-bottom: 4px;
+      margin-bottom: 6px;
     }
 
-    /* --- WIN95 BUTTONS & INPUTS --- */
-    .win-btn {
-      background: var(--win-bg);
-      border-top: 2px solid var(--win-border-light);
-      border-left: 2px solid var(--win-border-light);
-      border-right: 2px solid var(--win-border-black);
-      border-bottom: 2px solid var(--win-border-black);
-      box-shadow: 1px 1px 0px var(--win-border-dark);
+    /* --- DOS BUTTONS & INPUTS --- */
+    .dos-btn {
+      background: var(--dos-bg);
+      color: var(--dos-green);
+      border: 1px solid var(--dos-green);
       padding: 8px 12px;
       cursor: pointer;
       font-weight: bold;
       text-align: center;
-      min-height: 32px;
-    }
-
-    .win-btn:active {
-      border-top: 2px solid var(--win-border-black);
-      border-left: 2px solid var(--win-border-black);
-      border-right: 2px solid var(--win-border-light);
-      border-bottom: 2px solid var(--win-border-light);
-      box-shadow: none;
-      padding: 9px 11px 7px 13px;
-    }
-
-    input[type="text"], input[type="email"], textarea {
-      border-top: 2px solid var(--win-border-dark);
-      border-left: 2px solid var(--win-border-dark);
-      border-right: 2px solid var(--win-border-light);
-      border-bottom: 2px solid var(--win-border-light);
-      padding: 6px;
-      width: 100%;
-      margin-bottom: 8px;
-      user-select: text;
-    }
-
-    /* --- TASKBAR --- */
-    #taskbar {
-      height: 32px;
-      background: var(--win-bg);
-      border-top: 2px solid var(--win-border-light);
-      display: flex;
-      align-items: center;
-      padding: 2px;
+      text-transform: uppercase;
+      box-shadow: 2px 2px 0px var(--dos-dim-green);
+      min-height: 36px;
       margin-top: 4px;
     }
 
-    #start-btn {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      font-weight: bold;
-      height: 26px;
-      margin-right: 4px;
+    .dos-btn:active {
+      background: var(--dos-green);
+      color: var(--dos-bg);
+      box-shadow: none;
+      text-shadow: none;
     }
 
-    .task-item {
-      height: 26px;
-      flex: 1;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      padding: 0 6px;
-      background: var(--win-bg);
-      border-top: 2px solid var(--win-border-black);
-      border-left: 2px solid var(--win-border-black);
-      border-right: 2px solid var(--win-border-light);
-      border-bottom: 2px solid var(--win-border-light);
-      font-weight: bold;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    input[type="text"], input[type="email"], textarea {
+      background: var(--dos-bg);
+      color: var(--dos-green);
+      border: 1px solid var(--dos-green);
+      padding: 6px;
+      width: 100%;
+      margin-bottom: 8px;
+      font-family: monospace;
+      outline: none;
+      user-select: text;
     }
 
-    #system-tray {
-      border-top: 1px solid var(--win-border-dark);
-      border-left: 1px solid var(--win-border-dark);
-      border-right: 1px solid var(--win-border-light);
-      border-bottom: 1px solid var(--win-border-light);
-      padding: 2px 6px;
-      height: 24px;
+    input:focus, textarea:focus {
+      background: var(--dos-dark-green);
+    }
+
+    /* --- BLINKING CURSOR & ANIMATION --- */
+    .blink {
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    /* --- FOOTER STATUS BAR --- */
+    .dos-footer {
+      border-top: 1px solid var(--dos-green);
+      background: var(--dos-dark-green);
+      padding: 4px 6px;
       display: flex;
-      align-items: center;
+      justify-content: space-between;
       font-size: 11px;
     }
 
-    /* --- ANIMATION --- */
-    .vinyl-spin {
-      width: 36px;
-      height: 36px;
-      background: black;
-      border-radius: 50%;
-      border: 2px solid #555;
-      display: inline-block;
-      position: relative;
-      animation: spin 3s linear infinite;
-      flex-shrink: 0;
+    .ascii-art {
+      font-size: 9px;
+      line-height: 1;
+      white-space: pre;
+      margin-bottom: 8px;
     }
-    .vinyl-spin::after {
-      content: "";
-      position: absolute;
-      top: 13px; left: 13px;
-      width: 10px; height: 10px;
-      background: #e60000;
-      border-radius: 50%;
-    }
-    @keyframes spin { 100% { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
 
-  <!-- MOBILE WORKSPACE CONTAINER -->
-  <div id="workspace">
+  <div id="dos-container">
+    
+    <!-- DOS HEADER BAR -->
+    <div class="dos-header">
+      <span>C:\CAVE\SYSTEM.EXE</span>
+      <span>MS-DOS v6.22</span>
+    </div>
 
-    <!-- SINGLE EXCLUSIVE WINDOW -->
-    <div class="window" id="main-window">
-      
-      <!-- WINDOW TITLE BAR -->
-      <div class="title-bar">
-        <div class="title-bar-text">💽 C:\CAVE\Tenerife_Vinyl_Club.exe</div>
-        <div class="title-bar-controls">
-          <button onclick="alert('C.A.V.E. Tenerife - Preservación Analógica');">?</button>
-          <button onclick="location.reload();">×</button>
+    <!-- TAB NAVIGATION -->
+    <div class="dos-tabs">
+      <div class="dos-tab active" onclick="switchTab(0)">[1] MANIFIESTO</div>
+      <div class="dos-tab" onclick="switchTab(1)">[2] EJES</div>
+      <div class="dos-tab" onclick="switchTab(2)">[3] AGENDA</div>
+      <div class="dos-tab" onclick="switchTab(3)">[4] AUDIO_DECK</div>
+      <div class="dos-tab" onclick="switchTab(4)">[5] SOCIO</div>
+    </div>
+
+    <!-- MAIN DOS SCREEN BODY -->
+    <div class="dos-body">
+
+      <!-- TAB 1: MANIFIESTO -->
+      <div class="dos-panel active">
+        <div class="ascii-art">
+.-----------------------------------.
+| C.A.V.E. TENERIFE // ANALOG CLUB  |
+'-----------------------------------'
+        </div>
+        <div class="ascii-box">
+          <div class="ascii-box-title">> C:\CAVE\ABOUT.TXT</div>
+          <p><b>[RESISTENCIA ANALÓGICA EN EL ATLÁNTICO]</b></p>
+          <p>En un ecosistema hiperconectado de consumo digital efímero, C.A.V.E. (Club de Aficionados al Vinilo Exclusivo) opera como una institución subterránea dedicada al culto y conservación del formato físico.</p>
+          <p>Sede central: Tenerife, Islas Canarias.<br>Estado: Operativo.</p>
+        </div>
+        <button class="dos-btn" onclick="switchTab(4)">> REGISTRAR NUEVO SOCIO</button>
+      </div>
+
+      <!-- TAB 2: EJES ESTATUTARIOS -->
+      <div class="dos-panel">
+        <div class="ascii-box">
+          <div class="ascii-box-title">> C:\CAVE\STATUTES.DAT</div>
+          <p><b>[01] ARCHIVO & CONSERVACIÓN</b><br>Custodia de prensajes históricos y mantenimiento Hi-Fi.</p>
+          <p><b>[02] MERCADO EXCLUSIVO</b><br>Intercambio privado de joyas descatalogadas entre miembros.</p>
+          <p><b>[03] CULTURA DE ESCUCHA</b><br>Listening Sessions privadas y Pop-Up stores locales.</p>
+          <p><b>[04] RED INDEPENDIENTE</b><br>Alianzas con tiendas físicas de discos en Canarias.</p>
         </div>
       </div>
-      
-      <!-- WINDOW CONTENT AREA -->
-      <div class="window-body">
 
-        <!-- WIN95 NAVIGATION TABS -->
-        <div class="tabs">
-          <div class="tab active" onclick="switchTab(0)">Manifiesto</div>
-          <div class="tab" onclick="switchTab(1)">Ejes</div>
-          <div class="tab" onclick="switchTab(2)">Agenda</div>
-          <div class="tab" onclick="switchTab(3)">Player Hi-Fi</div>
-          <div class="tab" onclick="switchTab(4)">Socio</div>
+      <!-- TAB 3: AGENDA TENERIFE -->
+      <div class="dos-panel">
+        <div class="ascii-box">
+          <div class="ascii-box-title">> C:\CAVE\SCHEDULE.LOG</div>
+          <p><b>[EVENTO #01]</b><br>
+          NAME: Japanese Pressings 1970s<br>
+          LOC: Santa Cruz de Tenerife<br>
+          STATUS: <span style="color:#ff3333;">[AFORO COMPLETO]</span></p>
+          <hr style="border: 0; border-top: 1px dashed var(--dos-dim-green);">
+          <p><b>[EVENTO #02]</b><br>
+          NAME: Taller Calibración Giradiscos<br>
+          LOC: San Cristóbal de La Laguna<br>
+          STATUS: <span style="color:#33ff33;">[INSCRIPCION ABIERTA]</span></p>
         </div>
-
-        <!-- TAB 1: MANIFIESTO -->
-        <div class="tab-content active">
-          <div class="sunken-panel">
-            <h1 style="font-size: 13px; margin: 0 0 6px 0;">C.A.V.E. Tenerife — Resistencia Analógica</h1>
-            <p><b>El refugio del sonido analógico en el Atlántico.</b></p>
-            <p>En un ecosistema hiperconectado donde la música se ha convertido en consumo efímero, C.A.V.E. (Club de Aficionados al Vinilo Exclusivo) se constituye como una institución dedicada al culto, preservación y divulgación del sonido en formato físico.</p>
-            <p>Nacemos en Tenerife con la misión de tejer una red subterránea y selecta de coleccionistas, audiófilos y artesanos del audio.</p>
-          </div>
-          <button class="win-btn" onclick="switchTab(4)">Solicitar Admisión de Socio</button>
-        </div>
-
-        <!-- TAB 2: EJES -->
-        <div class="tab-content">
-          <fieldset>
-            <legend>Ejes de Actuación</legend>
-            <p><b>01. Archivo y Conservación:</b><br>Custodia de prensajes históricos, cuidado técnico y restauración Hi-Fi.</p>
-            <p><b>02. Mercado Selecto:</b><br>Plataforma privada entre socios para trueque y venta de ediciones descatalogadas.</p>
-            <p><b>03. Cultura de Escucha:</b><br>Listening sessions exclusivas, pop-up stores y workshops técnicos.</p>
-            <p><b>04. Ecosistema Local:</b><br>Alianzas con tiendas de discos independientes de Canarias.</p>
-          </fieldset>
-        </div>
-
-        <!-- TAB 3: AGENDA TENERIFE -->
-        <div class="tab-content">
-          <div class="sunken-panel" style="font-family: monospace; font-size: 11px;">
-            --- AGENDA SUBTERRÁNEA TENERIFE ---<br><br>
-            [SESIÓN #01]<br>
-            <b>Listening Session: Japanese Pressings 1970s</b><br>
-            Ubicación: Santa Cruz de Tenerife<br>
-            Estado: <span style="color: red;">AFORO COMPLETO</span><br><br>
-            ------------------------------------<br>
-            [TALLER #02]<br>
-            <b>Calibración de Giradiscos y Audio Vintage</b><br>
-            Ubicación: La Laguna<br>
-            Estado: <span style="color: green;">INSCRIPCIONES ABIERTAS</span>
-          </div>
-          <button class="win-btn" onclick="alert('Inscripción registrada. Contactaremos previa verificación de socio.');">Reservar Plaza Taller</button>
-        </div>
-
-        <!-- TAB 4: HI-FI PLAYER -->
-        <div class="tab-content">
-          <div class="sunken-panel" style="display: flex; align-items: center; gap: 12px; background: #000; color: #00ff00; font-family: monospace;">
-            <div class="vinyl-spin"></div>
-            <div>
-              <b>C.A.V.E. AUDIOPHILE MONITOR</b><br>
-              <span>SIGNAL: STEREO 33 RPM</span><br>
-              <small style="color: #888;">STATUS: TUBE AMPLIFIER OK</small>
-            </div>
-          </div>
-          <div style="display: flex; gap: 4px; justify-content: center; margin-top: 4px;">
-            <button class="win-btn" style="flex: 1;" onclick="alert('Reproduciendo pista de prueba analógica...');">▶ Play</button>
-            <button class="win-btn" style="flex: 1;">❚❚ Pause</button>
-            <button class="win-btn" style="flex: 1;">■ Stop</button>
-          </div>
-        </div>
-
-        <!-- TAB 5: FORMULARIO SOCIO -->
-        <div class="tab-content">
-          <div class="sunken-panel">
-            <h3 style="margin-top: 0; font-size: 12px;">Solicitud de Admisión</h3>
-            <label>Nombre y Apellidos:</label>
-            <input type="text" placeholder="Tu nombre...">
-            <label>Correo Electrónico:</label>
-            <input type="email" placeholder="usuario@dominio.com">
-            <label>Géneros o prensajes de interés:</label>
-            <textarea rows="3" placeholder="Ej: Jazz audiófilo, Rock 70s, Synth-Wave..."></textarea>
-            <button class="win-btn" style="width: 100%; margin-top: 4px;" onclick="alert('Solicitud enviada a la Junta Directiva de C.A.V.E. Tenerife.');">Enviar Solicitud</button>
-          </div>
-        </div>
-
+        <button class="dos-btn" onclick="alert('OK: Registro en cola de espera enviado a la Junta Directiva.');">> SOLICITAR INVITACION</button>
       </div>
+
+      <!-- TAB 4: RETRO AUDIO DECK -->
+      <div class="dos-panel">
+        <div class="ascii-box" style="text-align: center;">
+          <div class="ascii-box-title">> HI-FI MONITOR DECK</div>
+          <div style="font-size: 11px; margin: 10px 0;">
+             ___&nbsp;&nbsp;&nbsp;___<br>
+            /   \ /   \<br>
+            | (o)| |(o) |  [33 RPM STEREO]<br>
+            \___/ \___/
+          </div>
+          <p>DISC: ANALOG_TEST_TONE.WAV<br>PREAMP: TUBE AMPLIFIER ONLINE</p>
+        </div>
+        <div style="display: flex; gap: 4px;">
+          <button class="dos-btn" style="flex: 1;" onclick="alert('PLAYING ANALOG SIGNAL...');">[▶ PLAY]</button>
+          <button class="dos-btn" style="flex: 1;">[■ STOP]</button>
+        </div>
+      </div>
+
+      <!-- TAB 5: FORMULARIO REGISTRO -->
+      <div class="dos-panel">
+        <div class="ascii-box">
+          <div class="ascii-box-title">> USER_REGISTRATION.EXE</div>
+          <label>NOMBRE COMPLETO:</label>
+          <input type="text" placeholder="Escribe aquí...">
+          <label>CORREO DE CONTACTO:</label>
+          <input type="email" placeholder="usuario@dominio.com">
+          <label>INTERESES MUSICALES / HI-FI:</label>
+          <textarea rows="3" placeholder="Ej: Jazz, Audiophile Pressings..."></textarea>
+          <button class="dos-btn" style="width: 100%; margin-top: 4px;" onclick="alert('DATOS ENVIADOS CON ÉXITO A C:\\CAVE\\MEMBERS.DB');">> ENVIAR SOLICITUD DE ADMISIÓN</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- DOS FOOTER & PROMPT -->
+    <div class="dos-footer">
+      <span>C:\CAVE><span class="blink">█</span></span>
+      <span id="clock">12:00:00</span>
     </div>
 
   </div>
 
-  <!-- WIN95 MOBILE TASKBAR -->
-  <div id="taskbar">
-    <button id="start-btn" class="win-btn" onclick="alert('C.A.V.E.\nClub de Aficionados al Vinilo Exclusivo\nTenerife, Islas Canarias.');">
-      💾 Inicio
-    </button>
-
-    <div class="task-item">
-      💽 C:\CAVE\Main.exe
-    </div>
-
-    <div id="system-tray">
-      <span id="clock">12:00</span>
-    </div>
-  </div>
-
-  <!-- INTERACTIVITY SCRIPT -->
   <script>
-    // Tab Switching Logic
+    // Tab switching in text mode
     function switchTab(index) {
-      const tabs = document.querySelectorAll('.tab');
-      const contents = document.querySelectorAll('.tab-content');
+      const tabs = document.querySelectorAll('.dos-tab');
+      const panels = document.querySelectorAll('.dos-panel');
 
       tabs.forEach((tab, i) => {
         if (i === index) {
           tab.classList.add('active');
-          contents[i].classList.add('active');
+          panels[i].classList.add('active');
         } else {
           tab.classList.remove('active');
-          contents[i].classList.remove('active');
+          panels[i].classList.remove('active');
         }
       });
     }
 
-    // Live Clock Function
+    // Live Terminal Clock
     function updateClock() {
       const now = new Date();
-      let hours = now.getHours();
-      let minutes = now.getMinutes();
-      const ampm = hours >= 12 ? 'PM' : 'AM';
-      hours = hours % 12 || 12;
-      minutes = minutes < 10 ? '0' + minutes : minutes;
-      document.getElementById('clock').textContent = hours + ':' + minutes + ' ' + ampm;
+      const h = String(now.getHours()).padStart(2, '0');
+      const m = String(now.getMinutes()).padStart(2, '0');
+      const s = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('clock').textContent = h + ':' + m + ':' + s;
     }
     setInterval(updateClock, 1000);
     updateClock();
