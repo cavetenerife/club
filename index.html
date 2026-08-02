@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>C.A.V.E. Tenerife - Analog Vinyl Player</title>
+  <title>C.A.V.E. Tenerife - Technics 45 RPM Player</title>
   <style>
-    /* --- MONOCHROME HI-FI COMPONENT PALETTE --- */
+    /* --- MONOCHROME TECHNICS HI-FI PALETTE --- */
     :root {
       --chassis-bg: #000000;
       --chassis-border: #ffffff;
       --text-main: #ffffff;
       --text-dim: #777777;
-      --bg-dark: #121212;
       --groove-color: #222225;
+      --slipmat-pattern: #18181a;
+      --dot-color: #ffffff;
     }
 
     * {
@@ -47,14 +48,14 @@
       gap: 16px;
     }
 
-    /* --- TOP SECTION: SPINNING VINYL DECK --- */
-    .vinyl-deck-area {
+    /* --- TECHNICS SL-1200 STYLE TURNTABLE DECK --- */
+    .technics-deck-area {
       background: #000000;
       border: 1px solid #333333;
       border-radius: 6px;
       padding: 12px;
       position: relative;
-      height: 250px;
+      height: 260px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -62,23 +63,81 @@
       cursor: grab;
     }
 
-    .vinyl-deck-area:active {
+    .technics-deck-area:active {
       cursor: grabbing;
     }
 
-    /* PLATTER & TOUCH INTERACTIVE VINYL RECORD */
-    .platter-container {
-      width: 215px;
-      height: 215px;
+    /* PITCH SLIDER ACCENT (TECHNICS STYLING) */
+    .pitch-fader {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 100px;
+      background: #1a1a1a;
+      border: 1px solid #444444;
+      border-radius: 2px;
+    }
+
+    .pitch-fader::after {
+      content: "";
+      position: absolute;
+      left: -4px;
+      top: 40px;
+      width: 14px;
+      height: 10px;
+      background: #ffffff;
+      border-radius: 1px;
+    }
+
+    /* MAIN TURNTABLE PLATTER WITH STROBOSCOPIC DOT RING */
+    .technics-platter {
+      width: 230px;
+      height: 230px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #1a1a1d 68%, #000000 70%);
+      border: 6px repeating-conic-gradient(
+        var(--dot-color) 0deg 3deg,
+        #111113 3deg 9deg
+      );
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.8), 0 0 15px rgba(0,0,0,0.9);
       display: flex;
       justify-content: center;
       align-items: center;
       position: relative;
+      transform-origin: center center;
+      will-change: transform;
     }
 
-    .vinyl-record {
-      width: 210px;
-      height: 210px;
+    /* SLIPMAT (VISIBLE BENEATH 7-INCH VINYL) */
+    .slipmat {
+      width: 205px;
+      height: 205px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #222226 0%, #111114 100%);
+      border: 1px dashed #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      box-shadow: inset 0 0 8px rgba(0,0,0,0.9);
+    }
+
+    /* SLIPMAT GRAPHICS / LOGO */
+    .slipmat-brand {
+      position: absolute;
+      color: #333338;
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: 4px;
+      pointer-events: none;
+    }
+
+    /* 7-INCH VINYL RECORD (45 RPM SIZE) */
+    .vinyl-record-7inch {
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
       background: repeating-radial-gradient(
         circle at center,
@@ -87,31 +146,32 @@
         var(--groove-color) 3px,
         #050505 4px
       );
-      box-shadow: 0 0 15px rgba(0,0,0,0.9), 0 0 2px rgba(255,255,255,0.2);
+      box-shadow: 0 0 10px rgba(0,0,0,0.9), 0 0 2px rgba(255,255,255,0.3);
       display: flex;
       justify-content: center;
       align-items: center;
-      transform-origin: center center;
-      will-change: transform;
+      position: relative;
+      z-index: 2;
     }
 
-    /* MONOCHROME VINYL LABEL */
-    .vinyl-label {
-      width: 74px;
-      height: 74px;
+    /* 45 RPM LARGE CENTER ADAPTER & LABEL */
+    .rpm45-adapter {
+      width: 64px;
+      height: 64px;
       background: #ffffff;
       border-radius: 50%;
-      border: 3px solid #000;
+      border: 3px solid #000000;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
       color: #000000;
-      font-size: 7px;
+      font-size: 6.5px;
       font-weight: bold;
       letter-spacing: 0.5px;
       pointer-events: none;
+      box-shadow: inset 0 0 0 8px #000000, inset 0 0 0 10px #ffffff;
     }
 
     .center-spindle {
@@ -121,7 +181,7 @@
       border-radius: 50%;
       border: 1px solid #000;
       position: absolute;
-      z-index: 2;
+      z-index: 4;
       pointer-events: none;
     }
 
@@ -249,19 +309,35 @@
 
   <div class="hifi-system">
     
-    <!-- TOP SECTION: SPINNING VINYL ONLY (TOUCH INTERACTIVE) -->
-    <div class="vinyl-deck-area" id="deck">
+    <!-- TOP SECTION: TECHNICS TURNTABLE WITH 7" VINYL AT 45 RPM -->
+    <div class="technics-deck-area" id="deck">
       
-      <div class="platter-container">
-        <div class="vinyl-record" id="vinyl">
-          <div class="vinyl-label">
-            <span>C.A.V.E.</span>
-            <span>33 ⅓ RPM</span>
-            <span>TENERIFE</span>
+      <div class="pitch-fader"></div>
+
+      <!-- STROBOSCOPIC PLATTER RING -->
+      <div class="technics-platter" id="platter">
+        
+        <!-- VISIBLE SLIPMAT -->
+        <div class="slipmat">
+          <div class="slipmat-brand">C.A.V.E.</div>
+          
+          <!-- 7-INCH VINYL RECORD -->
+          <div class="vinyl-record-7inch">
+            
+            <!-- 45 RPM SPIDER ADAPTER -->
+            <div class="rpm45-adapter">
+              <span>C.A.V.E.</span>
+              <span>45 RPM</span>
+              <span>7" SINGLE</span>
+            </div>
+
           </div>
+
         </div>
-        <div class="center-spindle"></div>
+
       </div>
+
+      <div class="center-spindle"></div>
 
     </div>
 
@@ -272,7 +348,7 @@
         
         <div class="lcd-header">
           <span>CH-01: C.A.V.E. HI-FI</span>
-          <span id="statusIndicator">PLAYING // 33 RPM</span>
+          <span id="statusIndicator">PLAYING // 45 RPM</span>
         </div>
 
         <div class="lcd-tabs">
@@ -343,28 +419,30 @@
   </div>
 
   <script>
-    const vinyl = document.getElementById('vinyl');
+    const platter = document.getElementById('platter');
     const deck = document.getElementById('deck');
     const statusIndicator = document.getElementById('statusIndicator');
 
     let currentRotation = 0;
     let isTouching = false;
     let lastAngle = 0;
-    const rpmSpeed = 33.33 / 60 * 360 / 60; // Degrees per frame at 60fps (~2 degrees per frame)
+    
+    // 45 RPM rotation speed (~2.7 degrees per frame at 60fps)
+    const rpmSpeed = 45 / 60 * 360 / 60;
 
-    // Animation Loop for Motorized Rotation
-    function animateVinyl() {
+    // Animation loop for platter rotation
+    function animatePlatter() {
       if (!isTouching) {
         currentRotation += rpmSpeed;
-        vinyl.style.transform = `rotate(${currentRotation}deg)`;
+        platter.style.transform = `rotate(${currentRotation}deg)`;
       }
-      requestAnimationFrame(animateVinyl);
+      requestAnimationFrame(animatePlatter);
     }
-    requestAnimationFrame(animateVinyl);
+    requestAnimationFrame(animatePlatter);
 
-    // Calculate angle relative to vinyl center
+    // Angle calculation relative to center
     function getAngle(x, y) {
-      const rect = vinyl.getBoundingClientRect();
+      const rect = platter.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
       const rad = Math.atan2(y - centerY, x - centerX);
@@ -385,23 +463,22 @@
       const currentAngle = getAngle(pointer.clientX, pointer.clientY);
       let deltaAngle = currentAngle - lastAngle;
 
-      // Wrap-around angle correction
       if (deltaAngle > 180) deltaAngle -= 360;
       if (deltaAngle < -180) deltaAngle += 360;
 
       currentRotation += deltaAngle;
-      vinyl.style.transform = `rotate(${currentRotation}deg)`;
+      platter.style.transform = `rotate(${currentRotation}deg)`;
       lastAngle = currentAngle;
     }
 
     function handlePointerUp() {
       if (isTouching) {
         isTouching = false;
-        statusIndicator.textContent = 'PLAYING // 33 RPM';
+        statusIndicator.textContent = 'PLAYING // 45 RPM';
       }
     }
 
-    // Event Listeners for Mouse and Touch
+    // Event Listeners
     deck.addEventListener('mousedown', handlePointerDown);
     window.addEventListener('mousemove', handlePointerMove);
     window.addEventListener('mouseup', handlePointerUp);
@@ -410,7 +487,7 @@
     window.addEventListener('touchmove', handlePointerMove, { passive: true });
     window.addEventListener('touchend', handlePointerUp);
 
-    // B&W Display tab switcher
+    // Tab switcher
     function switchTab(index) {
       const tabs = document.querySelectorAll('.lcd-tab');
       const panels = document.querySelectorAll('.lcd-panel');
