@@ -85,51 +85,19 @@
       will-change: transform;
     }
 
-    /* 12-INCH SLIPMAT VARIANTS */
+    /* 12-INCH BLACK FELT SLIPMAT */
     .slipmat {
       width: 216px;
       height: 216px;
       border-radius: 50%;
+      background: radial-gradient(circle, #25252a 0%, #121215 100%);
+      border: 1px dashed #ffffff;
+      color: #35353c;
       display: flex;
       justify-content: center;
       align-items: center;
       position: relative;
       box-shadow: inset 0 0 10px rgba(0,0,0,0.9);
-      transition: background 0.3s ease, border-color 0.3s ease;
-    }
-
-    /* Style 0: Classic Dark Felt */
-    .slipmat.style-0 {
-      background: radial-gradient(circle, #25252a 0%, #121215 100%);
-      border: 1px dashed #ffffff;
-      color: #35353c;
-    }
-
-    /* Style 1: White Audiophile Felt */
-    .slipmat.style-1 {
-      background: radial-gradient(circle, #e6e6e6 0%, #cccccc 100%);
-      border: 1px dashed #000000;
-      color: #a0a0a0;
-    }
-
-    /* Style 2: Technical Grid */
-    .slipmat.style-2 {
-      background: 
-        linear-gradient(to right, rgba(255,255,255,0.15) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,0.15) 1px, transparent 1px),
-        #111;
-      background-size: 16px 16px;
-      border: 2px solid #ffffff;
-      color: #555555;
-    }
-
-    /* Style 3: Checkerboard */
-    .slipmat.style-3 {
-      background: 
-        conic-gradient(#ffffff 0.25turn, #000000 0.25turn 0.5turn, #ffffff 0.5turn 0.75turn, #000000 0.75turn);
-      background-size: 32px 32px;
-      border: 2px solid #ffffff;
-      color: #777777;
     }
 
     .slipmat-brand {
@@ -140,7 +108,7 @@
       pointer-events: none;
     }
 
-    /* ACCURATELY SCALED 7-INCH VINYL RECORD (~130px vs 216px SLIPMAT) */
+    /* ACCURATELY SCALED 7-INCH VINYL RECORD (~130px) */
     .vinyl-record-7inch {
       width: 130px;
       height: 130px;
@@ -160,10 +128,10 @@
       z-index: 2;
     }
 
-    /* LARGE 45 RPM CENTER HOLE & DINKED SPIDER ADAPTER */
+    /* LARGER 45 RPM CENTER HOLE & SPIDER ADAPTER */
     .large-center-hole {
-      width: 56px;
-      height: 56px;
+      width: 72px;
+      height: 72px;
       border-radius: 50%;
       background: #000000;
       border: 2px solid #ffffff;
@@ -171,13 +139,13 @@
       justify-content: center;
       align-items: center;
       position: relative;
-      box-shadow: inset 0 0 4px rgba(255,255,255,0.3);
+      box-shadow: inset 0 0 5px rgba(255,255,255,0.3);
     }
 
     /* 45 RPM SPIDER ADAPTER & PRINTED LABEL */
     .rpm45-adapter-label {
-      width: 48px;
-      height: 48px;
+      width: 62px;
+      height: 62px;
       background: #ffffff;
       border-radius: 50%;
       display: flex;
@@ -186,11 +154,11 @@
       align-items: center;
       text-align: center;
       color: #000000;
-      font-size: 5px;
+      font-size: 6px;
       font-weight: 900;
       letter-spacing: 0.3px;
       pointer-events: none;
-      line-height: 1.1;
+      line-height: 1.15;
     }
 
     .center-spindle {
@@ -204,37 +172,43 @@
       pointer-events: none;
     }
 
-    /* MAT TOGGLE BAR */
-    .mat-control-bar {
+    /* TRIGGER CONTROL BAR */
+    .trigger-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       background: #000000;
       border: 1px solid #333333;
       border-radius: 4px;
-      padding: 6px 10px;
+      padding: 8px 12px;
     }
 
-    .mat-control-label {
-      font-size: 9px;
+    .trigger-label {
+      font-size: 10px;
       letter-spacing: 1px;
-      color: var(--text-dim);
+      color: var(--text-main);
       font-family: monospace;
+      font-weight: bold;
     }
 
-    .mat-btn {
+    .trigger-btn {
       background: #000000;
       border: 1px solid #ffffff;
       color: #ffffff;
-      padding: 4px 10px;
-      font-size: 9px;
+      padding: 6px 14px;
+      font-size: 10px;
       font-weight: bold;
       font-family: monospace;
       cursor: pointer;
       border-radius: 2px;
+      transition: background 0.2s ease, color 0.2s ease;
     }
 
-    .mat-btn:active {
+    .trigger-btn:active {
+      transform: scale(0.97);
+    }
+
+    .trigger-btn.active {
       background: #ffffff;
       color: #000000;
     }
@@ -369,18 +343,18 @@
       <!-- STROBOSCOPIC PLATTER RING -->
       <div class="technics-platter" id="platter">
         
-        <!-- VISIBLE 12" SLIPMAT WITH DYNAMIC STYLES -->
-        <div class="slipmat style-0" id="slipmat">
+        <!-- VISIBLE 12" BLACK FELT SLIPMAT -->
+        <div class="slipmat" id="slipmat">
           <div class="slipmat-brand">C.A.V.E.</div>
           
           <!-- PROPORTIONAL 7-INCH VINYL RECORD -->
           <div class="vinyl-record-7inch">
             
-            <!-- LARGE 45 RPM CENTER HOLE WITH ADAPTER -->
+            <!-- LARGER 45 RPM CENTER HOLE WITH ADAPTER -->
             <div class="large-center-hole">
               <div class="rpm45-adapter-label">
                 <span>C.A.V.E.</span>
-                <span style="font-size: 6px; margin: 1px 0;">45 RPM</span>
+                <span style="font-size: 7px; margin: 1px 0;">45 RPM</span>
                 <span>TENERIFE</span>
               </div>
             </div>
@@ -395,10 +369,10 @@
 
     </div>
 
-    <!-- MAT SELECTOR BAR -->
-    <div class="mat-control-bar">
-      <span class="mat-control-label">SLIPMAT: <b id="matNameDisplay">BLACK FELT</b></span>
-      <button class="mat-btn" onclick="cycleSlipmat()">CHANGE MAT</button>
+    <!-- TRIGGER BUTTON BAR -->
+    <div class="trigger-bar">
+      <span class="trigger-label">MOTOR: <span id="motorStateText">STOPPED</span></span>
+      <button class="trigger-btn" id="triggerBtn" onclick="toggleMotor()">TRIGGER SPIN</button>
     </div>
 
     <!-- BOTTOM SECTION: B&W RECEIVER DISPLAY SCREEN -->
@@ -408,7 +382,7 @@
         
         <div class="lcd-header">
           <span>CH-01: C.A.V.E. HI-FI</span>
-          <span id="statusIndicator">PLAYING // 45 RPM</span>
+          <span id="statusIndicator">PAUSED // STANDBY</span>
         </div>
 
         <div class="lcd-tabs">
@@ -481,10 +455,11 @@
   <script>
     const platter = document.getElementById('platter');
     const deck = document.getElementById('deck');
-    const slipmat = document.getElementById('slipmat');
-    const matNameDisplay = document.getElementById('matNameDisplay');
+    const triggerBtn = document.getElementById('triggerBtn');
+    const motorStateText = document.getElementById('motorStateText');
     const statusIndicator = document.getElementById('statusIndicator');
 
+    let isSpinning = false;
     let currentRotation = 0;
     let isTouching = false;
     let lastAngle = 0;
@@ -492,25 +467,24 @@
     // 45 RPM rotation speed (~2.7 degrees per frame at 60fps)
     const rpmSpeed = 45 / 60 * 360 / 60;
 
-    // Slipmat Options
-    const matStyles = [
-      { name: "BLACK FELT", class: "style-0" },
-      { name: "WHITE FELT", class: "style-1" },
-      { name: "TECH GRID", class: "style-2" },
-      { name: "CHECKERBOARD", class: "style-3" }
-    ];
-    let currentMatIndex = 0;
+    // Toggle Motor Spinning via Trigger Button
+    function toggleMotor() {
+      isSpinning = !isSpinning;
 
-    function cycleSlipmat() {
-      slipmat.classList.remove(matStyles[currentMatIndex].class);
-      currentMatIndex = (currentMatIndex + 1) % matStyles.length;
-      slipmat.classList.add(matStyles[currentMatIndex].class);
-      matNameDisplay.textContent = matStyles[currentMatIndex].name;
+      if (isSpinning) {
+        triggerBtn.classList.add('active');
+        motorStateText.textContent = 'RUNNING';
+        if (!isTouching) statusIndicator.textContent = 'PLAYING // 45 RPM';
+      } else {
+        triggerBtn.classList.remove('active');
+        motorStateText.textContent = 'STOPPED';
+        if (!isTouching) statusIndicator.textContent = 'PAUSED // STANDBY';
+      }
     }
 
     // Animation loop for platter rotation
     function animatePlatter() {
-      if (!isTouching) {
+      if (isSpinning && !isTouching) {
         currentRotation += rpmSpeed;
         platter.style.transform = `rotate(${currentRotation}deg)`;
       }
@@ -552,7 +526,7 @@
     function handlePointerUp() {
       if (isTouching) {
         isTouching = false;
-        statusIndicator.textContent = 'PLAYING // 45 RPM';
+        statusIndicator.textContent = isSpinning ? 'PLAYING // 45 RPM' : 'PAUSED // STANDBY';
       }
     }
 
