@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>C.A.V.E. Tenerife - MS-DOS Executive</title>
+  <title>C.A.V.E. Tenerife - Club de Aficionados al Vinilo Exclusivo</title>
   <style>
     /* --- DOS CRT / BLACK & WHITE PHOSPHOR ENGINE --- */
     :root {
       --dos-bg: #000000;
       --dos-white: #ffffff;
-      --dos-dim-white: #777777;
+      --dos-dim-white: #888888;
       --dos-dark-gray: #1a1a1a;
     }
 
     * {
       box-sizing: border-box;
       font-family: "Courier New", Courier, monospace;
-      font-size: 13px;
-      line-height: 1.3;
+      font-size: 12px;
+      line-height: 1.25;
       user-select: none;
       -webkit-tap-highlight-color: transparent;
     }
@@ -61,33 +61,43 @@
     .dos-header {
       background: var(--dos-white);
       color: var(--dos-bg);
-      padding: 2px 6px;
+      padding: 3px 6px;
       font-weight: bold;
       display: flex;
       justify-content: space-between;
       text-shadow: none;
     }
 
-    /* --- NAVIGATION TABS --- */
+    /* --- HIGH-VISIBILITY RESPONSIVE TABS --- */
     .dos-tabs {
       display: flex;
-      border-bottom: 1px solid var(--dos-white);
-      background: var(--dos-bg);
-      overflow-x: auto;
-      white-space: nowrap;
+      flex-wrap: wrap;
+      border-bottom: 2px solid var(--dos-white);
+      background: var(--dos-dark-gray);
+      padding: 2px;
+      gap: 2px;
     }
 
     .dos-tab {
-      padding: 6px 12px;
-      color: var(--dos-dim-white);
+      flex: 1 1 calc(50% - 2px); /* 2x2 grid on small screens, 1 row on wider */
+      min-width: 0;
+      padding: 6px 4px;
+      color: var(--dos-white);
+      background: var(--dos-bg);
+      border: 1px solid var(--dos-white);
+      text-align: center;
       cursor: pointer;
-      border-right: 1px solid var(--dos-dim-white);
+      font-weight: bold;
+      font-size: 11px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .dos-tab.active {
       background: var(--dos-white);
       color: var(--dos-bg);
-      font-weight: bold;
+      border-color: var(--dos-white);
       text-shadow: none;
     }
 
@@ -183,10 +193,10 @@
     }
 
     .ascii-art {
-      font-size: 9px;
+      font-size: 8px;
       line-height: 1;
       white-space: pre;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
   </style>
 </head>
@@ -194,13 +204,13 @@
 
   <div id="dos-container">
     
-    <!-- DOS HEADER BAR -->
+    <!-- HEADER BAR WITH CLUB NAME -->
     <div class="dos-header">
       <span>C:\CAVE\SYSTEM.EXE</span>
-      <span>MS-DOS v6.22</span>
+      <span>C.A.V.E. TENERIFE</span>
     </div>
 
-    <!-- TAB NAVIGATION -->
+    <!-- HIGH-VISIBILITY ADAPTIVE TABS -->
     <div class="dos-tabs">
       <div class="dos-tab active" onclick="switchTab(0)">[1] MANIFIESTO</div>
       <div class="dos-tab" onclick="switchTab(1)">[2] EJES</div>
