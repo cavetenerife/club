@@ -2,10 +2,10 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>C.A.V.E. - Club de Aficionados al Vinilo Exclusivo (Tenerife)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>C.A.V.E. Tenerife - Club de Aficionados al Vinilo Exclusivo</title>
   <style>
-    /* --- WIN95 CORE CSS ENGINE --- */
+    /* --- WIN95 MOBILE ENGINE --- */
     :root {
       --bg-teal: #008080;
       --win-bg: #c0c0c0;
@@ -20,52 +20,34 @@
     * {
       box-sizing: border-box;
       font-family: "MS Sans Serif", Tahoma, Geneva, sans-serif;
-      font-size: 11px;
+      font-size: 12px;
       user-select: none;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
       background-color: var(--bg-teal);
       margin: 0;
-      padding: 0;
+      padding: 6px;
       height: 100vh;
+      height: -webkit-fill-available;
       display: flex;
       flex-direction: column;
       overflow: hidden;
       color: var(--win-text);
     }
 
-    /* --- DESKTOP AREA --- */
-    #desktop {
+    /* --- MOBILE WORKSPACE --- */
+    #workspace {
       flex: 1;
-      position: relative;
-      padding: 10px;
-      overflow-y: auto;
-    }
-
-    .desktop-shortcut {
-      width: 75px;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      text-align: center;
-      margin-bottom: 20px;
-      cursor: pointer;
-      color: white;
-      text-shadow: 1px 1px 1px black;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
     }
 
-    .desktop-shortcut:active .shortcut-title {
-      background-color: var(--win-blue);
-      border: 1px dotted yellow;
-    }
-
-    .shortcut-icon {
-      font-size: 32px;
-      margin-bottom: 4px;
-    }
-
-    /* --- WIN95 WINDOW COMPONENT --- */
+    /* --- SINGLE WINDOW (MOBILE RESPONSIVE) --- */
     .window {
       background: var(--win-bg);
       border-top: 2px solid var(--win-border-light);
@@ -73,16 +55,17 @@
       border-right: 2px solid var(--win-border-black);
       border-bottom: 2px solid var(--win-border-black);
       box-shadow: 1px 1px 0px var(--win-border-dark);
-      position: absolute;
+      width: 100%;
+      max-width: 480px;
+      height: 100%;
+      max-height: 92vh;
       display: flex;
       flex-direction: column;
-      min-width: 320px;
-      max-width: 700px;
     }
 
     .title-bar {
       background: linear-gradient(90deg, var(--win-blue), var(--win-blue-light));
-      padding: 3px 4px;
+      padding: 4px 6px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -93,13 +76,16 @@
     .title-bar-text {
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .title-bar-controls button {
-      width: 16px;
-      height: 14px;
-      font-size: 9px;
+      width: 18px;
+      height: 16px;
+      font-size: 10px;
       line-height: 10px;
       padding: 0;
       background: var(--win-bg);
@@ -112,19 +98,60 @@
     }
 
     .window-body {
-      padding: 10px;
-      overflow-y: auto;
-      max-height: 500px;
+      padding: 8px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
     }
 
-    /* --- INSET PANELS / FRAMES --- */
+    /* --- TABS SYSTEM --- */
+    .tabs {
+      display: flex;
+      border-bottom: 2px solid var(--win-border-dark);
+      margin-bottom: 8px;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .tab {
+      padding: 6px 10px;
+      background: var(--win-bg);
+      border-top: 2px solid var(--win-border-light);
+      border-left: 2px solid var(--win-border-light);
+      border-right: 2px solid var(--win-border-dark);
+      margin-right: 2px;
+      cursor: pointer;
+      font-weight: normal;
+    }
+
+    .tab.active {
+      border-bottom: 2px solid var(--win-bg);
+      margin-bottom: -2px;
+      font-weight: bold;
+      background: var(--win-bg);
+    }
+
+    /* --- TAB CONTENT PANELS --- */
+    .tab-content {
+      display: none;
+      flex: 1;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    .tab-content.active {
+      display: flex;
+    }
+
+    /* --- PANELS & FRAMES --- */
     .sunken-panel {
       border-top: 2px solid var(--win-border-dark);
       border-left: 2px solid var(--win-border-dark);
       border-right: 2px solid var(--win-border-light);
       border-bottom: 2px solid var(--win-border-light);
       background: white;
-      padding: 8px;
+      padding: 10px;
       margin-bottom: 10px;
     }
 
@@ -141,7 +168,7 @@
       font-weight: bold;
     }
 
-    /* --- WIN95 BUTTONS --- */
+    /* --- WIN95 BUTTONS & INPUTS --- */
     .win-btn {
       background: var(--win-bg);
       border-top: 2px solid var(--win-border-light);
@@ -149,10 +176,11 @@
       border-right: 2px solid var(--win-border-black);
       border-bottom: 2px solid var(--win-border-black);
       box-shadow: 1px 1px 0px var(--win-border-dark);
-      padding: 4px 12px;
+      padding: 8px 12px;
       cursor: pointer;
       font-weight: bold;
       text-align: center;
+      min-height: 32px;
     }
 
     .win-btn:active {
@@ -161,42 +189,29 @@
       border-right: 2px solid var(--win-border-light);
       border-bottom: 2px solid var(--win-border-light);
       box-shadow: none;
-      padding: 5px 11px 3px 13px;
+      padding: 9px 11px 7px 13px;
     }
 
-    /* --- TABS --- */
-    .tabs {
-      display: flex;
-      border-bottom: 2px solid var(--win-border-dark);
+    input[type="text"], input[type="email"], textarea {
+      border-top: 2px solid var(--win-border-dark);
+      border-left: 2px solid var(--win-border-dark);
+      border-right: 2px solid var(--win-border-light);
+      border-bottom: 2px solid var(--win-border-light);
+      padding: 6px;
+      width: 100%;
       margin-bottom: 8px;
-    }
-
-    .tab {
-      padding: 3px 8px;
-      background: var(--win-bg);
-      border-top: 2px solid var(--win-border-light);
-      border-left: 2px solid var(--win-border-light);
-      border-right: 2px solid var(--win-border-dark);
-      margin-right: 2px;
-      cursor: pointer;
-    }
-
-    .tab.active {
-      border-bottom: 2px solid var(--win-bg);
-      margin-bottom: -2px;
-      font-weight: bold;
-      z-index: 2;
+      user-select: text;
     }
 
     /* --- TASKBAR --- */
     #taskbar {
-      height: 28px;
+      height: 32px;
       background: var(--win-bg);
       border-top: 2px solid var(--win-border-light);
       display: flex;
       align-items: center;
       padding: 2px;
-      z-index: 999;
+      margin-top: 4px;
     }
 
     #start-btn {
@@ -204,72 +219,58 @@
       align-items: center;
       gap: 4px;
       font-weight: bold;
-      height: 22px;
-      margin-right: 6px;
-    }
-
-    .taskbar-divider {
-      width: 2px;
-      height: 18px;
-      border-left: 1px solid var(--win-border-dark);
-      border-right: 1px solid var(--win-border-light);
-      margin: 0 2px;
+      height: 26px;
+      margin-right: 4px;
     }
 
     .task-item {
-      height: 22px;
+      height: 26px;
+      flex: 1;
       display: flex;
       align-items: center;
       gap: 4px;
-      padding: 0 8px;
+      padding: 0 6px;
       background: var(--win-bg);
       border-top: 2px solid var(--win-border-black);
       border-left: 2px solid var(--win-border-black);
       border-right: 2px solid var(--win-border-light);
       border-bottom: 2px solid var(--win-border-light);
       font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     #system-tray {
-      margin-left: auto;
       border-top: 1px solid var(--win-border-dark);
       border-left: 1px solid var(--win-border-dark);
       border-right: 1px solid var(--win-border-light);
       border-bottom: 1px solid var(--win-border-light);
-      padding: 2px 8px;
-      height: 20px;
+      padding: 2px 6px;
+      height: 24px;
       display: flex;
       align-items: center;
+      font-size: 11px;
     }
 
-    /* --- FORM ELEMENTS --- */
-    input[type="text"], input[type="email"], select, textarea {
-      border-top: 2px solid var(--win-border-dark);
-      border-left: 2px solid var(--win-border-dark);
-      border-right: 2px solid var(--win-border-light);
-      border-bottom: 2px solid var(--win-border-light);
-      padding: 3px;
-      width: 100%;
-      margin-bottom: 8px;
-    }
-
-    /* --- MEDIA PLAYER ANIMATION --- */
+    /* --- ANIMATION --- */
     .vinyl-spin {
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
       background: black;
       border-radius: 50%;
-      border: 2px solid gray;
+      border: 2px solid #555;
       display: inline-block;
       position: relative;
       animation: spin 3s linear infinite;
+      flex-shrink: 0;
     }
     .vinyl-spin::after {
       content: "";
       position: absolute;
-      top: 15px; left: 15px;
+      top: 13px; left: 13px;
       width: 10px; height: 10px;
-      background: red;
+      background: #e60000;
       border-radius: 50%;
     }
     @keyframes spin { 100% { transform: rotate(360deg); } }
@@ -277,199 +278,153 @@
 </head>
 <body>
 
-  <!-- DESKTOP WORKSPACE -->
-  <div id="desktop">
+  <!-- MOBILE WORKSPACE CONTAINER -->
+  <div id="workspace">
 
-    <!-- DESKTOP ICONS -->
-    <div class="desktop-shortcut" onclick="bringToFront('win-main')">
-      <div class="shortcut-icon">💽</div>
-      <div class="shortcut-title">CAVE_Main.exe</div>
-    </div>
-    
-    <div class="desktop-shortcut" onclick="bringToFront('win-events')">
-      <div class="shortcut-icon">📅</div>
-      <div class="shortcut-title">Agenda_TFE.txt</div>
-    </div>
-
-    <div class="desktop-shortcut" onclick="bringToFront('win-player')">
-      <div class="shortcut-icon">📻</div>
-      <div class="shortcut-title">HiFi_Player.exe</div>
-    </div>
-
-    <!-- WINDOW 1: MAIN CLUB WINDOW -->
-    <div class="window" id="win-main" style="top: 20px; left: 100px; width: 550px;">
+    <!-- SINGLE EXCLUSIVE WINDOW -->
+    <div class="window" id="main-window">
+      
+      <!-- WINDOW TITLE BAR -->
       <div class="title-bar">
-        <div class="title-bar-text">💽 C:\CAVE\Club_Aficionados_Vinilo_Exclusivo.exe</div>
+        <div class="title-bar-text">💽 C:\CAVE\Tenerife_Vinyl_Club.exe</div>
         <div class="title-bar-controls">
-          <button>_</button>
-          <button>□</button>
-          <button onclick="hideWindow('win-main')">×</button>
+          <button onclick="alert('C.A.V.E. Tenerife - Preservación Analógica');">?</button>
+          <button onclick="location.reload();">×</button>
         </div>
       </div>
       
+      <!-- WINDOW CONTENT AREA -->
       <div class="window-body">
+
+        <!-- WIN95 NAVIGATION TABS -->
         <div class="tabs">
-          <div class="tab active">Manifiesto</div>
-          <div class="tab">Ejes Estatutarios</div>
-          <div class="tab">Admisión</div>
+          <div class="tab active" onclick="switchTab(0)">Manifiesto</div>
+          <div class="tab" onclick="switchTab(1)">Ejes</div>
+          <div class="tab" onclick="switchTab(2)">Agenda</div>
+          <div class="tab" onclick="switchTab(3)">Player Hi-Fi</div>
+          <div class="tab" onclick="switchTab(4)">Socio</div>
         </div>
 
-        <div class="sunken-panel">
-          <h1 style="font-size: 14px; margin-top: 0;">C.A.V.E. Tenerife — Resistencia Analógica</h1>
-          <p><b>El refugio del sonido analógico en el Atlántico.</b></p>
-          <p>En un ecosistema hiperconectado donde la música se ha convertido en consumo efímero, C.A.V.E. se constituye como una institución dedicada al culto, preservación y divulgación del sonido en formato físico.</p>
-          <p>Operamos desde Tenerife como una red subterránea y selecta de coleccionistas, audiófilos y artesanos del audio. No entendemos el vinilo como una moda vintage, sino como el estándar definitivo de fidelidad sonora.</p>
+        <!-- TAB 1: MANIFIESTO -->
+        <div class="tab-content active">
+          <div class="sunken-panel">
+            <h1 style="font-size: 13px; margin: 0 0 6px 0;">C.A.V.E. Tenerife — Resistencia Analógica</h1>
+            <p><b>El refugio del sonido analógico en el Atlántico.</b></p>
+            <p>En un ecosistema hiperconectado donde la música se ha convertido en consumo efímero, C.A.V.E. (Club de Aficionados al Vinilo Exclusivo) se constituye como una institución dedicada al culto, preservación y divulgación del sonido en formato físico.</p>
+            <p>Nacemos en Tenerife con la misión de tejer una red subterránea y selecta de coleccionistas, audiófilos y artesanos del audio.</p>
+          </div>
+          <button class="win-btn" onclick="switchTab(4)">Solicitar Admisión de Socio</button>
         </div>
 
-        <fieldset>
-          <legend>Nuestros Pilares</legend>
-          <ul>
-            <li><b>01. Archivo y Conservación:</b> Custodia de prensajes históricos y restauración Hi-Fi.</li>
-            <li><b>02. Mercado Selecto:</b> Compra, venta y trueque privado de copias descatalogadas.</li>
-            <li><b>03. Cultura de Escucha:</b> Listening sessions exclusivas y pop-up stores locales.</li>
-            <li><b>04. Ecosistema Local:</b> Alianzas con tiendas independientes de discos en Canarias.</li>
-          </ul>
-        </fieldset>
+        <!-- TAB 2: EJES -->
+        <div class="tab-content">
+          <fieldset>
+            <legend>Ejes de Actuación</legend>
+            <p><b>01. Archivo y Conservación:</b><br>Custodia de prensajes históricos, cuidado técnico y restauración Hi-Fi.</p>
+            <p><b>02. Mercado Selecto:</b><br>Plataforma privada entre socios para trueque y venta de ediciones descatalogadas.</p>
+            <p><b>03. Cultura de Escucha:</b><br>Listening sessions exclusivas, pop-up stores y workshops técnicos.</p>
+            <p><b>04. Ecosistema Local:</b><br>Alianzas con tiendas de discos independientes de Canarias.</p>
+          </fieldset>
+        </div>
 
-        <div style="display: flex; justify-content: flex-end; gap: 8px;">
-          <button class="win-btn" onclick="bringToFront('win-events')">Ver Agenda Eventos</button>
-          <button class="win-btn" onclick="alert('Iniciando descarga de estatutos oficiales C.A.V.E....');">Descargar Estatutos .PDF</button>
+        <!-- TAB 3: AGENDA TENERIFE -->
+        <div class="tab-content">
+          <div class="sunken-panel" style="font-family: monospace; font-size: 11px;">
+            --- AGENDA SUBTERRÁNEA TENERIFE ---<br><br>
+            [SESIÓN #01]<br>
+            <b>Listening Session: Japanese Pressings 1970s</b><br>
+            Ubicación: Santa Cruz de Tenerife<br>
+            Estado: <span style="color: red;">AFORO COMPLETO</span><br><br>
+            ------------------------------------<br>
+            [TALLER #02]<br>
+            <b>Calibración de Giradiscos y Audio Vintage</b><br>
+            Ubicación: La Laguna<br>
+            Estado: <span style="color: green;">INSCRIPCIONES ABIERTAS</span>
+          </div>
+          <button class="win-btn" onclick="alert('Inscripción registrada. Contactaremos previa verificación de socio.');">Reservar Plaza Taller</button>
         </div>
-      </div>
-    </div>
 
-    <!-- WINDOW 2: EVENTS / AGENDA -->
-    <div class="window" id="win-events" style="top: 80px; left: 180px; width: 450px;">
-      <div class="title-bar">
-        <div class="title-bar-text">📅 C:\CAVE\AGENDA_TENERIFE.TXT</div>
-        <div class="title-bar-controls">
-          <button>_</button>
-          <button>□</button>
-          <button onclick="hideWindow('win-events')">×</button>
-        </div>
-      </div>
-      <div class="window-body">
-        <div class="sunken-panel" style="background: #fff; font-family: monospace;">
-          --- PRÓXIMAS ENCUENTROS SUBTERRÁNEOS ---<br><br>
-          [EVENTO #01]<br>
-          Nombre: Hi-Fi Listening Session: Japanese Pressings 1970s<br>
-          Ubicación: Santa Cruz de Tenerife (Ubicación secreta para socios)<br>
-          Estado: AFORO COMPLETO<br><br>
-          ----------------------------------------<br>
-          [EVENTO #02]<br>
-          Nombre: Taller de Calibración de Giradiscos y Cuidado de Acetatos<br>
-          Colaboración: Comercios locales de La Laguna<br>
-          Estado: INSCRIPCIONES ABIERTAS<br>
-        </div>
-        <button class="win-btn" style="width: 100%;" onclick="alert('Solicitud enviada a la Junta Directiva.');">Solicitar Invitación a Sesión</button>
-      </div>
-    </div>
-
-    <!-- WINDOW 3: MEDIA PLAYER (FUN RETRO TOUCH) -->
-    <div class="window" id="win-player" style="top: 240px; left: 240px; width: 340px;">
-      <div class="title-bar">
-        <div class="title-bar-text">📻 C.A.V.E. High-Fidelity Audio Monitor</div>
-        <div class="title-bar-controls">
-          <button>_</button>
-          <button>□</button>
-          <button onclick="hideWindow('win-player')">×</button>
-        </div>
-      </div>
-      <div class="window-body">
-        <div class="sunken-panel" style="display: flex; align-items: center; gap: 15px; background: #000; color: #00ff00; font-family: monospace;">
-          <div class="vinyl-spin"></div>
-          <div>
-            <b>TRACK: 33 RPM (Analog Test)</b><br>
-            <span>STATUS: PLAYING [STEREOPHONIC]</span><br>
-            <small>SIGNAL: TUBE PREAMP OK</small>
+        <!-- TAB 4: HI-FI PLAYER -->
+        <div class="tab-content">
+          <div class="sunken-panel" style="display: flex; align-items: center; gap: 12px; background: #000; color: #00ff00; font-family: monospace;">
+            <div class="vinyl-spin"></div>
+            <div>
+              <b>C.A.V.E. AUDIOPHILE MONITOR</b><br>
+              <span>SIGNAL: STEREO 33 RPM</span><br>
+              <small style="color: #888;">STATUS: TUBE AMPLIFIER OK</small>
+            </div>
+          </div>
+          <div style="display: flex; gap: 4px; justify-content: center; margin-top: 4px;">
+            <button class="win-btn" style="flex: 1;" onclick="alert('Reproduciendo pista de prueba analógica...');">▶ Play</button>
+            <button class="win-btn" style="flex: 1;">❚❚ Pause</button>
+            <button class="win-btn" style="flex: 1;">■ Stop</button>
           </div>
         </div>
-        <div style="display: flex; gap: 4px; justify-content: center;">
-          <button class="win-btn">◄◄</button>
-          <button class="win-btn">▶</button>
-          <button class="win-btn">❚❚</button>
-          <button class="win-btn">■</button>
-          <button class="win-btn">►►</button>
+
+        <!-- TAB 5: FORMULARIO SOCIO -->
+        <div class="tab-content">
+          <div class="sunken-panel">
+            <h3 style="margin-top: 0; font-size: 12px;">Solicitud de Admisión</h3>
+            <label>Nombre y Apellidos:</label>
+            <input type="text" placeholder="Tu nombre...">
+            <label>Correo Electrónico:</label>
+            <input type="email" placeholder="usuario@dominio.com">
+            <label>Géneros o prensajes de interés:</label>
+            <textarea rows="3" placeholder="Ej: Jazz audiófilo, Rock 70s, Synth-Wave..."></textarea>
+            <button class="win-btn" style="width: 100%; margin-top: 4px;" onclick="alert('Solicitud enviada a la Junta Directiva de C.A.V.E. Tenerife.');">Enviar Solicitud</button>
+          </div>
         </div>
+
       </div>
     </div>
 
   </div>
 
-  <!-- WIN95 TASKBAR -->
+  <!-- WIN95 MOBILE TASKBAR -->
   <div id="taskbar">
-    <button id="start-btn" class="win-btn" onclick="alert('C.A.V.E. Club de Aficionados al Vinilo Exclusivo\nSede: Tenerife, Islas Canarias.\nFundado para la preservación analógica.');">
-      <span style="font-size: 14px;">💾</span> Inicio
+    <button id="start-btn" class="win-btn" onclick="alert('C.A.V.E.\nClub de Aficionados al Vinilo Exclusivo\nTenerife, Islas Canarias.');">
+      💾 Inicio
     </button>
-    
-    <div class="taskbar-divider"></div>
 
-    <div class="task-item" onclick="bringToFront('win-main')">
-      💽 C:\CAVE\Club...
-    </div>
-    <div class="task-item" onclick="bringToFront('win-events')">
-      📅 Agenda_TFE.txt
+    <div class="task-item">
+      💽 C:\CAVE\Main.exe
     </div>
 
     <div id="system-tray">
-      🔊 33 RPM &nbsp; <span id="clock">12:00 PM</span>
+      <span id="clock">12:00</span>
     </div>
   </div>
 
-  <!-- JAVASCRIPT FOR INTERACTIVITY & WINDOW MANAGEMENT -->
+  <!-- INTERACTIVITY SCRIPT -->
   <script>
-    // Live Clock function
+    // Tab Switching Logic
+    function switchTab(index) {
+      const tabs = document.querySelectorAll('.tab');
+      const contents = document.querySelectorAll('.tab-content');
+
+      tabs.forEach((tab, i) => {
+        if (i === index) {
+          tab.classList.add('active');
+          contents[i].classList.add('active');
+        } else {
+          tab.classList.remove('active');
+          contents[i].classList.remove('active');
+        }
+      });
+    }
+
+    // Live Clock Function
     function updateClock() {
       const now = new Date();
       let hours = now.getHours();
       let minutes = now.getMinutes();
       const ampm = hours >= 12 ? 'PM' : 'AM';
-      hours = hours % 12;
-      hours = hours ? hours : 12;
+      hours = hours % 12 || 12;
       minutes = minutes < 10 ? '0' + minutes : minutes;
       document.getElementById('clock').textContent = hours + ':' + minutes + ' ' + ampm;
     }
     setInterval(updateClock, 1000);
     updateClock();
-
-    // Window Management (Z-Index / Focus)
-    let highestZ = 10;
-    function bringToFront(windowId) {
-      const win = document.getElementById(windowId);
-      win.style.display = 'flex';
-      highestZ++;
-      win.style.zIndex = highestZ;
-    }
-
-    function hideWindow(windowId) {
-      document.getElementById(windowId).style.display = 'none';
-    }
-
-    // Drag and Drop functionality for Windows
-    document.querySelectorAll('.window').forEach(win => {
-      const titleBar = win.querySelector('.title-bar');
-      let isDragging = false;
-      let offsetX, offsetY;
-
-      titleBar.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        bringToFront(win.id);
-        offsetX = e.clientX - win.offsetLeft;
-        offsetY = e.clientY - win.offsetTop;
-      });
-
-      document.addEventListener('mousemove', (e) => {
-        if (isDragging) {
-          win.style.left = (e.clientX - offsetX) + 'px';
-          win.style.top = (e.clientY - offsetY) + 'px';
-        }
-      });
-
-      document.addEventListener('mouseup', () => {
-        isDragging = false;
-      });
-    });
   </script>
 </body>
 </html>
-
