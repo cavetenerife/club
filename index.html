@@ -5,16 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>C.A.V.E. Tenerife - Analog Vinyl Player</title>
   <style>
-    /* --- VINTAGE HI-FI COMPONENT PALETTE --- */
+    /* --- MONOCHROME HI-FI COMPONENT PALETTE --- */
     :root {
-      --chassis-bg: #141414;
-      --aluminum-light: #e0e0e0;
-      --aluminum-dark: #77777c;
-      --accent-gold: #d4af37;
-      --lcd-bg: #0d1610;
-      --lcd-green: #39ff14;
-      --lcd-dim: #154410;
-      --groove-color: #242428;
+      --chassis-bg: #000000;
+      --chassis-border: #ffffff;
+      --text-main: #ffffff;
+      --text-dim: #777777;
+      --bg-dark: #121212;
+      --groove-color: #222225;
     }
 
     * {
@@ -25,8 +23,8 @@
     }
 
     body {
-      background-color: #080808;
-      color: #e0e0e0;
+      background-color: #050505;
+      color: var(--text-main);
       margin: 0;
       padding: 12px;
       min-height: 100vh;
@@ -35,76 +33,73 @@
       align-items: center;
     }
 
-    /* --- HI-FI SYSTEM CHASSIS --- */
+    /* --- HI-FI SYSTEM CONTAINER --- */
     .hifi-system {
       width: 100%;
-      max-width: 440px;
-      background: linear-gradient(145deg, #2a2a2e, #111113);
-      border: 3px solid #333338;
-      border-radius: 12px;
+      max-width: 420px;
+      background: #0d0d0d;
+      border: 2px solid var(--chassis-border);
+      border-radius: 8px;
       padding: 16px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.9), inset 0 1px 1px rgba(255,255,255,0.1);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.9);
       display: flex;
       flex-direction: column;
       gap: 16px;
     }
 
-    /* --- TURNTABLE DECK --- */
-    .turntable-deck {
-      background: radial-gradient(circle at 40% 50%, #252528 0%, #131315 100%);
-      border: 2px solid #000;
-      border-radius: 8px;
-      padding: 16px;
+    /* --- TOP SECTION: SPINNING VINYL DECK --- */
+    .vinyl-deck-area {
+      background: #000000;
+      border: 1px solid #333333;
+      border-radius: 6px;
+      padding: 12px;
       position: relative;
       height: 250px;
-      box-shadow: inset 0 0 15px rgba(0,0,0,0.8);
-      overflow: hidden;
-    }
-
-    /* PLATTER & SPINNING VINYL */
-    .platter-container {
-      position: absolute;
-      left: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 210px;
-      height: 210px;
       display: flex;
       justify-content: center;
       align-items: center;
+      overflow: hidden;
+      cursor: grab;
+    }
+
+    .vinyl-deck-area:active {
+      cursor: grabbing;
+    }
+
+    /* PLATTER & TOUCH INTERACTIVE VINYL RECORD */
+    .platter-container {
+      width: 215px;
+      height: 215px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
     }
 
     .vinyl-record {
-      width: 205px;
-      height: 205px;
+      width: 210px;
+      height: 210px;
       border-radius: 50%;
       background: repeating-radial-gradient(
         circle at center,
-        #0a0a0b 0px,
-        #0a0a0b 2px,
+        #050505 0px,
+        #050505 2px,
         var(--groove-color) 3px,
-        #0a0a0b 4px
+        #050505 4px
       );
-      box-shadow: 0 0 12px rgba(0,0,0,0.9), 0 0 2px rgba(255,255,255,0.2);
+      box-shadow: 0 0 15px rgba(0,0,0,0.9), 0 0 2px rgba(255,255,255,0.2);
       display: flex;
       justify-content: center;
       align-items: center;
-      transition: transform 0.6s cubic-bezier(0.2, 0, 0.4, 1);
+      transform-origin: center center;
+      will-change: transform;
     }
 
-    .vinyl-record.spinning {
-      animation: rotate-vinyl 1.8s linear infinite;
-    }
-
-    @keyframes rotate-vinyl {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
+    /* MONOCHROME VINYL LABEL */
     .vinyl-label {
-      width: 72px;
-      height: 72px;
-      background: radial-gradient(circle, #c0392b 0%, #8e44ad 100%);
+      width: 74px;
+      height: 74px;
+      background: #ffffff;
       border-radius: 50%;
       border: 3px solid #000;
       display: flex;
@@ -112,187 +107,81 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      color: #fff;
+      color: #000000;
       font-size: 7px;
       font-weight: bold;
       letter-spacing: 0.5px;
-      box-shadow: inset 0 0 4px rgba(0,0,0,0.6);
+      pointer-events: none;
     }
 
     .center-spindle {
       width: 10px;
       height: 10px;
-      background: linear-gradient(135deg, #fff, #777);
+      background: #ffffff;
       border-radius: 50%;
       border: 1px solid #000;
       position: absolute;
       z-index: 2;
+      pointer-events: none;
     }
 
-    /* FIXED TONEARM ASSEMBLY */
-    .tonearm-assembly {
-      position: absolute;
-      right: 40px;
-      top: 20px;
-      width: 60px;
-      height: 180px;
-      z-index: 3;
-    }
-
-    .tonearm-base {
-      width: 42px;
-      height: 42px;
-      background: radial-gradient(circle, var(--aluminum-light), var(--aluminum-dark));
-      border-radius: 50%;
-      border: 2px solid #111;
-      position: absolute;
-      right: 0;
-      top: 0;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.7);
-    }
-
-    /* Pivot point placed at top-center of arm */
-    .tonearm-arm {
-      width: 6px;
-      height: 135px;
-      background: linear-gradient(to right, #e0e0e0, #888, #e0e0e0);
-      position: absolute;
-      right: 18px;
-      top: 20px;
-      transform-origin: 3px 10px;
-      transform: rotate(26deg); /* Rest position off-record */
-      transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-      border-radius: 3px;
-    }
-
-    .tonearm-cartridge {
-      width: 12px;
-      height: 24px;
-      background: var(--accent-gold);
-      position: absolute;
-      bottom: -4px;
-      left: -3px;
-      border-radius: 2px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.6);
-      transform: rotate(-10deg);
-    }
-
-    /* Engaged state rotates onto vinyl groove */
-    .tonearm-assembly.engaged .tonearm-arm {
-      transform: rotate(-2deg);
-    }
-
-    /* BOTTOM-RIGHT CORNER START/STOP BUTTON */
-    .deck-controls-br {
-      position: absolute;
-      right: 16px;
-      bottom: 16px;
-      z-index: 4;
-    }
-
-    .power-btn {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: linear-gradient(145deg, #333, #1a1a1a);
-      border: 2px solid #45454a;
-      color: var(--aluminum-light);
-      font-size: 9px;
-      font-weight: bold;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.2);
-    }
-
-    .power-btn:active {
-      transform: scale(0.96);
-    }
-
-    .power-btn.active {
-      background: linear-gradient(145deg, #111, #222);
-      color: var(--accent-gold);
-      border-color: var(--accent-gold);
-      box-shadow: inset 0 2px 5px rgba(0,0,0,0.9);
-    }
-
-    /* --- DIGITAL RECEIVER DISPLAY SCREEN --- */
+    /* --- BLACK AND WHITE RECEIVER DISPLAY SCREEN --- */
     .receiver-display-unit {
-      background: #000;
-      border: 3px solid #1c1c1e;
-      border-radius: 8px;
-      padding: 12px;
-      box-shadow: inset 0 0 10px rgba(0,0,0,1);
+      background: #000000;
+      border: 1px solid #ffffff;
+      border-radius: 6px;
+      padding: 10px;
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
 
     .lcd-screen {
-      background-color: var(--lcd-bg);
-      border: 2px solid #1a2a1c;
-      border-radius: 4px;
-      padding: 12px;
-      color: var(--lcd-green);
+      background-color: #000000;
+      color: var(--text-main);
       font-family: "Courier New", Courier, monospace;
-      min-height: 220px;
-      box-shadow: inset 0 0 12px rgba(0,0,0,0.9);
-      position: relative;
+      min-height: 230px;
       display: flex;
       flex-direction: column;
       overflow: hidden;
     }
 
-    .lcd-screen::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.4) 50%);
-      background-size: 100% 3px;
-      pointer-events: none;
-      z-index: 5;
-    }
-
     .lcd-header {
       display: flex;
       justify-content: space-between;
-      border-bottom: 1px dashed var(--lcd-dim);
+      border-bottom: 1px dashed var(--text-dim);
       padding-bottom: 4px;
       margin-bottom: 8px;
       font-size: 10px;
       letter-spacing: 1px;
     }
 
+    /* MONOCHROME TABS */
     .lcd-tabs {
       display: flex;
       gap: 4px;
-      border-bottom: 1px solid var(--lcd-dim);
+      border-bottom: 1px solid #ffffff;
       padding-bottom: 6px;
       margin-bottom: 10px;
     }
 
     .lcd-tab {
       flex: 1;
-      background: rgba(21, 68, 16, 0.3);
-      border: 1px solid var(--lcd-dim);
-      color: var(--lcd-green);
+      background: #000000;
+      border: 1px solid var(--text-dim);
+      color: var(--text-dim);
       padding: 6px 2px;
       font-size: 10px;
       text-align: center;
       cursor: pointer;
       font-weight: bold;
       border-radius: 2px;
-      opacity: 0.6;
     }
 
     .lcd-tab.active {
-      background: var(--lcd-green);
-      color: var(--lcd-bg);
-      opacity: 1;
-      border-color: var(--lcd-green);
-      text-shadow: none;
+      background: #ffffff;
+      color: #000000;
+      border-color: #ffffff;
     }
 
     .lcd-content {
@@ -315,15 +204,15 @@
     .lcd-title {
       font-weight: bold;
       text-transform: uppercase;
-      border-bottom: 1px dotted var(--lcd-dim);
+      border-bottom: 1px dotted var(--text-dim);
       padding-bottom: 2px;
       margin-bottom: 4px;
     }
 
     .lcd-input {
-      background: transparent;
-      border: 1px solid var(--lcd-dim);
-      color: var(--lcd-green);
+      background: #000000;
+      border: 1px solid var(--text-dim);
+      color: #ffffff;
       padding: 6px;
       font-family: monospace;
       font-size: 11px;
@@ -334,14 +223,13 @@
     }
 
     .lcd-input:focus {
-      border-color: var(--lcd-green);
-      background: rgba(57, 255, 20, 0.05);
+      border-color: #ffffff;
     }
 
     .lcd-btn {
-      background: rgba(57, 255, 20, 0.15);
-      border: 1px solid var(--lcd-green);
-      color: var(--lcd-green);
+      background: #000000;
+      border: 1px solid #ffffff;
+      color: #ffffff;
       padding: 8px;
       font-family: monospace;
       font-weight: bold;
@@ -352,8 +240,8 @@
     }
 
     .lcd-btn:active {
-      background: var(--lcd-green);
-      color: var(--lcd-bg);
+      background: #ffffff;
+      color: #000000;
     }
   </style>
 </head>
@@ -361,10 +249,9 @@
 
   <div class="hifi-system">
     
-    <!-- TURNTABLE DECK -->
-    <div class="turntable-deck">
+    <!-- TOP SECTION: SPINNING VINYL ONLY (TOUCH INTERACTIVE) -->
+    <div class="vinyl-deck-area" id="deck">
       
-      <!-- PLATTER & VINYL -->
       <div class="platter-container">
         <div class="vinyl-record" id="vinyl">
           <div class="vinyl-label">
@@ -376,31 +263,16 @@
         <div class="center-spindle"></div>
       </div>
 
-      <!-- CORRECTED TONEARM ASSEMBLY -->
-      <div class="tonearm-assembly" id="tonearm">
-        <div class="tonearm-base"></div>
-        <div class="tonearm-arm">
-          <div class="tonearm-cartridge"></div>
-        </div>
-      </div>
-
-      <!-- BOTTOM RIGHT CORNER START / STOP BUTTON -->
-      <div class="deck-controls-br">
-        <button class="power-btn" id="playBtn" onclick="toggleTurntable()">
-          <span id="playLabel">START</span>
-        </button>
-      </div>
-
     </div>
 
-    <!-- RECEIVER DISPLAY SCREEN WITH TABS -->
+    <!-- BOTTOM SECTION: B&W RECEIVER DISPLAY SCREEN -->
     <div class="receiver-display-unit">
       
       <div class="lcd-screen">
         
         <div class="lcd-header">
           <span>CH-01: C.A.V.E. HI-FI</span>
-          <span id="statusIndicator">PAUSED // STANDBY</span>
+          <span id="statusIndicator">PLAYING // 33 RPM</span>
         </div>
 
         <div class="lcd-tabs">
@@ -443,7 +315,7 @@
           <div class="lcd-panel">
             <div class="lcd-title">> PROGRAMACIÓN DE EVENTOS</div>
             <p>Próximos encuentros, Listening Sessions y Pop-Up Stores en Tenerife...</p>
-            <div style="border: 1px dashed var(--lcd-dim); padding: 12px; text-align: center; margin: 10px 0;">
+            <div style="border: 1px dashed var(--text-dim); padding: 12px; text-align: center; margin: 10px 0;">
               <b>*** COMING SOON ***</b><br>
               <span style="font-size: 9px; opacity: 0.8;">PRÓXIMAMENTE MÁS INFORMACIÓN</span>
             </div>
@@ -471,34 +343,74 @@
   </div>
 
   <script>
-    let isPlaying = false;
+    const vinyl = document.getElementById('vinyl');
+    const deck = document.getElementById('deck');
+    const statusIndicator = document.getElementById('statusIndicator');
 
-    // Toggle Turntable spin and mechanical tonearm position
-    function toggleTurntable() {
-      const vinyl = document.getElementById('vinyl');
-      const tonearm = document.getElementById('tonearm');
-      const playBtn = document.getElementById('playBtn');
-      const playLabel = document.getElementById('playLabel');
-      const statusIndicator = document.getElementById('statusIndicator');
+    let currentRotation = 0;
+    let isTouching = false;
+    let lastAngle = 0;
+    const rpmSpeed = 33.33 / 60 * 360 / 60; // Degrees per frame at 60fps (~2 degrees per frame)
 
-      isPlaying = !isPlaying;
+    // Animation Loop for Motorized Rotation
+    function animateVinyl() {
+      if (!isTouching) {
+        currentRotation += rpmSpeed;
+        vinyl.style.transform = `rotate(${currentRotation}deg)`;
+      }
+      requestAnimationFrame(animateVinyl);
+    }
+    requestAnimationFrame(animateVinyl);
 
-      if (isPlaying) {
-        vinyl.classList.add('spinning');
-        tonearm.classList.add('engaged');
-        playBtn.classList.add('active');
-        playLabel.textContent = 'STOP';
+    // Calculate angle relative to vinyl center
+    function getAngle(x, y) {
+      const rect = vinyl.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const rad = Math.atan2(y - centerY, x - centerX);
+      return rad * (180 / Math.PI);
+    }
+
+    // Touch & Scratch Controls
+    function handlePointerDown(e) {
+      isTouching = true;
+      const pointer = e.touches ? e.touches[0] : e;
+      lastAngle = getAngle(pointer.clientX, pointer.clientY);
+      statusIndicator.textContent = 'HOLDING // SCRATCHING';
+    }
+
+    function handlePointerMove(e) {
+      if (!isTouching) return;
+      const pointer = e.touches ? e.touches[0] : e;
+      const currentAngle = getAngle(pointer.clientX, pointer.clientY);
+      let deltaAngle = currentAngle - lastAngle;
+
+      // Wrap-around angle correction
+      if (deltaAngle > 180) deltaAngle -= 360;
+      if (deltaAngle < -180) deltaAngle += 360;
+
+      currentRotation += deltaAngle;
+      vinyl.style.transform = `rotate(${currentRotation}deg)`;
+      lastAngle = currentAngle;
+    }
+
+    function handlePointerUp() {
+      if (isTouching) {
+        isTouching = false;
         statusIndicator.textContent = 'PLAYING // 33 RPM';
-      } else {
-        vinyl.classList.remove('spinning');
-        tonearm.classList.remove('engaged');
-        playBtn.classList.remove('active');
-        playLabel.textContent = 'START';
-        statusIndicator.textContent = 'PAUSED // STANDBY';
       }
     }
 
-    // LCD Screen tab switching logic
+    // Event Listeners for Mouse and Touch
+    deck.addEventListener('mousedown', handlePointerDown);
+    window.addEventListener('mousemove', handlePointerMove);
+    window.addEventListener('mouseup', handlePointerUp);
+
+    deck.addEventListener('touchstart', handlePointerDown, { passive: true });
+    window.addEventListener('touchmove', handlePointerMove, { passive: true });
+    window.addEventListener('touchend', handlePointerUp);
+
+    // B&W Display tab switcher
     function switchTab(index) {
       const tabs = document.querySelectorAll('.lcd-tab');
       const panels = document.querySelectorAll('.lcd-panel');
