@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>C.A.V.E. Tenerife - MS-DOS Executive</title>
   <style>
-    /* --- DOS CRT / GREEN PHOSPHOR ENGINE --- */
+    /* --- DOS CRT / BLACK & WHITE PHOSPHOR ENGINE --- */
     :root {
-      --dos-bg: #050b05;
-      --dos-green: #33ff33;
-      --dos-dim-green: #116611;
-      --dos-dark-green: #052205;
+      --dos-bg: #000000;
+      --dos-white: #ffffff;
+      --dos-dim-white: #777777;
+      --dos-dark-gray: #1a1a1a;
     }
 
     * {
@@ -24,7 +24,7 @@
 
     body {
       background-color: var(--dos-bg);
-      color: var(--dos-green);
+      color: var(--dos-white);
       margin: 0;
       padding: 6px;
       height: 100vh;
@@ -32,16 +32,16 @@
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      text-shadow: 0 0 4px rgba(51, 255, 51, 0.4);
+      text-shadow: 0 0 3px rgba(255, 255, 255, 0.4);
     }
 
-    /* --- CRT SCANLINE & GLOW EFFECT --- */
+    /* --- CRT SCANLINE EFFECT --- */
     body::before {
       content: " ";
       display: block;
       position: absolute;
       top: 0; left: 0; bottom: 0; right: 0;
-      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.35) 50%);
       background-size: 100% 4px;
       z-index: 99;
       pointer-events: none;
@@ -51,15 +51,15 @@
     /* --- DOS ASCII FRAMEWORK --- */
     #dos-container {
       flex: 1;
-      border: 2px solid var(--dos-green);
+      border: 2px solid var(--dos-white);
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      background: var(--dos-dark-green);
+      background: var(--dos-bg);
     }
 
     .dos-header {
-      background: var(--dos-green);
+      background: var(--dos-white);
       color: var(--dos-bg);
       padding: 2px 6px;
       font-weight: bold;
@@ -68,24 +68,24 @@
       text-shadow: none;
     }
 
-    /* --- NAVIGATION TABS (ASCII BOX STYLE) --- */
+    /* --- NAVIGATION TABS --- */
     .dos-tabs {
       display: flex;
-      border-bottom: 1px solid var(--dos-green);
+      border-bottom: 1px solid var(--dos-white);
       background: var(--dos-bg);
       overflow-x: auto;
       white-space: nowrap;
     }
 
     .dos-tab {
-      padding: 6px 10px;
-      color: var(--dos-dim-green);
+      padding: 6px 12px;
+      color: var(--dos-dim-white);
       cursor: pointer;
-      border-right: 1px solid var(--dos-dim-green);
+      border-right: 1px solid var(--dos-dim-white);
     }
 
     .dos-tab.active {
-      background: var(--dos-green);
+      background: var(--dos-white);
       color: var(--dos-bg);
       font-weight: bold;
       text-shadow: none;
@@ -113,35 +113,35 @@
 
     /* --- ASCII BOXES --- */
     .ascii-box {
-      border: 1px dashed var(--dos-green);
-      padding: 8px;
+      border: 1px dashed var(--dos-white);
+      padding: 10px;
       margin-bottom: 8px;
     }
 
     .ascii-box-title {
       font-weight: bold;
-      border-bottom: 1px solid var(--dos-dim-green);
+      border-bottom: 1px solid var(--dos-dim-white);
       padding-bottom: 4px;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     /* --- DOS BUTTONS & INPUTS --- */
     .dos-btn {
       background: var(--dos-bg);
-      color: var(--dos-green);
-      border: 1px solid var(--dos-green);
+      color: var(--dos-white);
+      border: 1px solid var(--dos-white);
       padding: 8px 12px;
       cursor: pointer;
       font-weight: bold;
       text-align: center;
       text-transform: uppercase;
-      box-shadow: 2px 2px 0px var(--dos-dim-green);
+      box-shadow: 2px 2px 0px var(--dos-dim-white);
       min-height: 36px;
       margin-top: 4px;
     }
 
     .dos-btn:active {
-      background: var(--dos-green);
+      background: var(--dos-white);
       color: var(--dos-bg);
       box-shadow: none;
       text-shadow: none;
@@ -149,8 +149,8 @@
 
     input[type="text"], input[type="email"], textarea {
       background: var(--dos-bg);
-      color: var(--dos-green);
-      border: 1px solid var(--dos-green);
+      color: var(--dos-white);
+      border: 1px solid var(--dos-white);
       padding: 6px;
       width: 100%;
       margin-bottom: 8px;
@@ -160,7 +160,7 @@
     }
 
     input:focus, textarea:focus {
-      background: var(--dos-dark-green);
+      background: var(--dos-dark-gray);
     }
 
     /* --- BLINKING CURSOR & ANIMATION --- */
@@ -174,8 +174,8 @@
 
     /* --- FOOTER STATUS BAR --- */
     .dos-footer {
-      border-top: 1px solid var(--dos-green);
-      background: var(--dos-dark-green);
+      border-top: 1px solid var(--dos-white);
+      background: var(--dos-dark-gray);
       padding: 4px 6px;
       display: flex;
       justify-content: space-between;
@@ -205,8 +205,7 @@
       <div class="dos-tab active" onclick="switchTab(0)">[1] MANIFIESTO</div>
       <div class="dos-tab" onclick="switchTab(1)">[2] EJES</div>
       <div class="dos-tab" onclick="switchTab(2)">[3] AGENDA</div>
-      <div class="dos-tab" onclick="switchTab(3)">[4] AUDIO_DECK</div>
-      <div class="dos-tab" onclick="switchTab(4)">[5] SOCIO</div>
+      <div class="dos-tab" onclick="switchTab(3)">[4] SOCIO</div>
     </div>
 
     <!-- MAIN DOS SCREEN BODY -->
@@ -225,7 +224,7 @@
           <p>En un ecosistema hiperconectado de consumo digital efímero, C.A.V.E. (Club de Aficionados al Vinilo Exclusivo) opera como una institución subterránea dedicada al culto y conservación del formato físico.</p>
           <p>Sede central: Tenerife, Islas Canarias.<br>Estado: Operativo.</p>
         </div>
-        <button class="dos-btn" onclick="switchTab(4)">> REGISTRAR NUEVO SOCIO</button>
+        <button class="dos-btn" onclick="switchTab(3)">> REGISTRAR NUEVO SOCIO</button>
       </div>
 
       <!-- TAB 2: EJES ESTATUTARIOS -->
@@ -239,42 +238,22 @@
         </div>
       </div>
 
-      <!-- TAB 3: AGENDA TENERIFE -->
+      <!-- TAB 3: AGENDA (COMING SOON) -->
       <div class="dos-panel">
         <div class="ascii-box">
           <div class="ascii-box-title">> C:\CAVE\SCHEDULE.LOG</div>
-          <p><b>[EVENTO #01]</b><br>
-          NAME: Japanese Pressings 1970s<br>
-          LOC: Santa Cruz de Tenerife<br>
-          STATUS: <span style="color:#ff3333;">[AFORO COMPLETO]</span></p>
-          <hr style="border: 0; border-top: 1px dashed var(--dos-dim-green);">
-          <p><b>[EVENTO #02]</b><br>
-          NAME: Taller Calibración Giradiscos<br>
-          LOC: San Cristóbal de La Laguna<br>
-          STATUS: <span style="color:#33ff33;">[INSCRIPCION ABIERTA]</span></p>
-        </div>
-        <button class="dos-btn" onclick="alert('OK: Registro en cola de espera enviado a la Junta Directiva.');">> SOLICITAR INVITACION</button>
-      </div>
-
-      <!-- TAB 4: RETRO AUDIO DECK -->
-      <div class="dos-panel">
-        <div class="ascii-box" style="text-align: center;">
-          <div class="ascii-box-title">> HI-FI MONITOR DECK</div>
-          <div style="font-size: 11px; margin: 10px 0;">
-             ___&nbsp;&nbsp;&nbsp;___<br>
-            /   \ /   \<br>
-            | (o)| |(o) |  [33 RPM STEREO]<br>
-            \___/ \___/
+          <p><b>[ESTADO DE PROGRAMACIÓN]</b></p>
+          <p>Próximos encuentros, Listening Sessions y Pop-Up Stores en Tenerife...</p>
+          <div style="border: 1px dashed var(--dos-white); padding: 12px; text-align: center; margin: 15px 0;">
+            <b>*** COMING SOON ***</b><br>
+            <span style="font-size: 11px; color: var(--dos-dim-white);">PRÓXIMAMENTE MÁS INFORMACIÓN</span>
           </div>
-          <p>DISC: ANALOG_TEST_TONE.WAV<br>PREAMP: TUBE AMPLIFIER ONLINE</p>
+          <p>Suscríbete como socio para recibir acceso anticipado y notificaciones privadas sobre la agenda.</p>
         </div>
-        <div style="display: flex; gap: 4px;">
-          <button class="dos-btn" style="flex: 1;" onclick="alert('PLAYING ANALOG SIGNAL...');">[▶ PLAY]</button>
-          <button class="dos-btn" style="flex: 1;">[■ STOP]</button>
-        </div>
+        <button class="dos-btn" onclick="switchTab(3)">> SOLICITAR ADMISIÓN DE SOCIO</button>
       </div>
 
-      <!-- TAB 5: FORMULARIO REGISTRO -->
+      <!-- TAB 4: FORMULARIO REGISTRO -->
       <div class="dos-panel">
         <div class="ascii-box">
           <div class="ascii-box-title">> USER_REGISTRATION.EXE</div>
@@ -299,7 +278,7 @@
   </div>
 
   <script>
-    // Tab switching in text mode
+    // Tab switching logic
     function switchTab(index) {
       const tabs = document.querySelectorAll('.dos-tab');
       const panels = document.querySelectorAll('.dos-panel');
