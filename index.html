@@ -8,14 +8,12 @@
     /* --- VINTAGE HI-FI COMPONENT PALETTE --- */
     :root {
       --chassis-bg: #141414;
-      --chassis-metal: #222225;
-      --aluminum-light: #d8d8d8;
-      --aluminum-dark: #88888c;
+      --aluminum-light: #e0e0e0;
+      --aluminum-dark: #77777c;
       --accent-gold: #d4af37;
       --lcd-bg: #0d1610;
       --lcd-green: #39ff14;
       --lcd-dim: #154410;
-      --vinyl-black: #111113;
       --groove-color: #242428;
     }
 
@@ -37,7 +35,7 @@
       align-items: center;
     }
 
-    /* --- HI-FI TURNTABLE SYSTEM CHASSIS --- */
+    /* --- HI-FI SYSTEM CHASSIS --- */
     .hifi-system {
       width: 100%;
       max-width: 440px;
@@ -51,34 +49,34 @@
       gap: 16px;
     }
 
-    /* --- TURNTABLE DECK SECTION --- */
+    /* --- TURNTABLE DECK --- */
     .turntable-deck {
-      background: radial-gradient(circle, #252528 0%, #151517 100%);
+      background: radial-gradient(circle at 40% 50%, #252528 0%, #131315 100%);
       border: 2px solid #000;
       border-radius: 8px;
       padding: 16px;
       position: relative;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      height: 250px;
       box-shadow: inset 0 0 15px rgba(0,0,0,0.8);
       overflow: hidden;
-      min-height: 240px;
     }
 
-    /* SPINNING VINYL RECORD */
+    /* PLATTER & SPINNING VINYL */
     .platter-container {
-      position: relative;
-      width: 200px;
-      height: 200px;
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 210px;
+      height: 210px;
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
     .vinyl-record {
-      width: 195px;
-      height: 195px;
+      width: 205px;
+      height: 205px;
       border-radius: 50%;
       background: repeating-radial-gradient(
         circle at center,
@@ -87,11 +85,11 @@
         var(--groove-color) 3px,
         #0a0a0b 4px
       );
-      box-shadow: 0 0 10px rgba(0,0,0,0.8), 0 0 2px rgba(255,255,255,0.2);
+      box-shadow: 0 0 12px rgba(0,0,0,0.9), 0 0 2px rgba(255,255,255,0.2);
       display: flex;
       justify-content: center;
       align-items: center;
-      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: transform 0.6s cubic-bezier(0.2, 0, 0.4, 1);
     }
 
     .vinyl-record.spinning {
@@ -103,10 +101,9 @@
       to { transform: rotate(360deg); }
     }
 
-    /* RECORD LABEL */
     .vinyl-label {
-      width: 70px;
-      height: 70px;
+      width: 72px;
+      height: 72px;
       background: radial-gradient(circle, #c0392b 0%, #8e44ad 100%);
       border-radius: 50%;
       border: 3px solid #000;
@@ -129,90 +126,99 @@
       border-radius: 50%;
       border: 1px solid #000;
       position: absolute;
+      z-index: 2;
     }
 
-    /* TONEARM ASSEMBLY */
+    /* FIXED TONEARM ASSEMBLY */
     .tonearm-assembly {
       position: absolute;
-      right: 15px;
-      top: 10px;
-      width: 70px;
-      height: 200px;
-      pointer-events: none;
+      right: 40px;
+      top: 20px;
+      width: 60px;
+      height: 180px;
+      z-index: 3;
     }
 
     .tonearm-base {
-      width: 36px;
-      height: 36px;
+      width: 42px;
+      height: 42px;
       background: radial-gradient(circle, var(--aluminum-light), var(--aluminum-dark));
       border-radius: 50%;
       border: 2px solid #111;
       position: absolute;
-      right: 10px;
-      top: 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.6);
+      right: 0;
+      top: 0;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.7);
     }
 
+    /* Pivot point placed at top-center of arm */
     .tonearm-arm {
       width: 6px;
-      height: 140px;
-      background: linear-gradient(to right, #e0e0e0, #999, #e0e0e0);
+      height: 135px;
+      background: linear-gradient(to right, #e0e0e0, #888, #e0e0e0);
       position: absolute;
-      right: 25px;
-      top: 30px;
-      transform-origin: top center;
-      transform: rotate(-28deg);
-      transition: transform 0.8s ease-in-out;
+      right: 18px;
+      top: 20px;
+      transform-origin: 3px 10px;
+      transform: rotate(26deg); /* Rest position off-record */
+      transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
       border-radius: 3px;
     }
 
     .tonearm-cartridge {
-      width: 14px;
+      width: 12px;
       height: 24px;
       background: var(--accent-gold);
       position: absolute;
-      bottom: -10px;
-      left: -4px;
+      bottom: -4px;
+      left: -3px;
       border-radius: 2px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.6);
+      transform: rotate(-10deg);
     }
 
+    /* Engaged state rotates onto vinyl groove */
     .tonearm-assembly.engaged .tonearm-arm {
-      transform: rotate(-4deg);
+      transform: rotate(-2deg);
     }
 
-    /* CONTROLS AREA */
-    .deck-controls {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      z-index: 2;
+    /* BOTTOM-RIGHT CORNER START/STOP BUTTON */
+    .deck-controls-br {
+      position: absolute;
+      right: 16px;
+      bottom: 16px;
+      z-index: 4;
     }
 
     .power-btn {
-      width: 44px;
-      height: 44px;
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
       background: linear-gradient(145deg, #333, #1a1a1a);
-      border: 2px solid #444;
+      border: 2px solid #45454a;
       color: var(--aluminum-light);
-      font-size: 10px;
+      font-size: 9px;
       font-weight: bold;
       cursor: pointer;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.2);
+    }
+
+    .power-btn:active {
+      transform: scale(0.96);
     }
 
     .power-btn.active {
       background: linear-gradient(145deg, #111, #222);
       color: var(--accent-gold);
       border-color: var(--accent-gold);
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.9);
     }
 
-    /* --- DIGITAL RECEIVER DISPLAY SCREEN (UNDERNEATH) --- */
+    /* --- DIGITAL RECEIVER DISPLAY SCREEN --- */
     .receiver-display-unit {
       background: #000;
       border: 3px solid #1c1c1e;
@@ -224,7 +230,6 @@
       gap: 10px;
     }
 
-    /* AUDIO LCD SCREEN */
     .lcd-screen {
       background-color: var(--lcd-bg);
       border: 2px solid #1a2a1c;
@@ -240,7 +245,6 @@
       overflow: hidden;
     }
 
-    /* LCD SCANLINES */
     .lcd-screen::before {
       content: "";
       position: absolute;
@@ -261,7 +265,6 @@
       letter-spacing: 1px;
     }
 
-    /* --- LCD RECEIVER TABS --- */
     .lcd-tabs {
       display: flex;
       gap: 4px;
@@ -292,7 +295,6 @@
       text-shadow: none;
     }
 
-    /* DISPLAY PANELS */
     .lcd-content {
       flex: 1;
       overflow-y: auto;
@@ -318,7 +320,6 @@
       margin-bottom: 4px;
     }
 
-    /* INTERACTIVE FORM IN LCD SCREEN */
     .lcd-input {
       background: transparent;
       border: 1px solid var(--lcd-dim);
@@ -358,10 +359,9 @@
 </head>
 <body>
 
-  <!-- MAIN HI-FI AUDIO SYSTEM -->
   <div class="hifi-system">
     
-    <!-- TOP: TURNTABLE & VINYL PLAYER DECK -->
+    <!-- TURNTABLE DECK -->
     <div class="turntable-deck">
       
       <!-- PLATTER & VINYL -->
@@ -376,7 +376,7 @@
         <div class="center-spindle"></div>
       </div>
 
-      <!-- TONEARM -->
+      <!-- CORRECTED TONEARM ASSEMBLY -->
       <div class="tonearm-assembly" id="tonearm">
         <div class="tonearm-base"></div>
         <div class="tonearm-arm">
@@ -384,8 +384,8 @@
         </div>
       </div>
 
-      <!-- DECK CONTROLS -->
-      <div class="deck-controls">
+      <!-- BOTTOM RIGHT CORNER START / STOP BUTTON -->
+      <div class="deck-controls-br">
         <button class="power-btn" id="playBtn" onclick="toggleTurntable()">
           <span id="playLabel">START</span>
         </button>
@@ -393,18 +393,16 @@
 
     </div>
 
-    <!-- BOTTOM: DIGITAL RECEIVER DISPLAY SCREEN WITH TABS -->
+    <!-- RECEIVER DISPLAY SCREEN WITH TABS -->
     <div class="receiver-display-unit">
       
       <div class="lcd-screen">
         
-        <!-- DISPLAY STATUS BAR -->
         <div class="lcd-header">
           <span>CH-01: C.A.V.E. HI-FI</span>
-          <span id="statusIndicator">PLAYING // 33 RPM</span>
+          <span id="statusIndicator">PAUSED // STANDBY</span>
         </div>
 
-        <!-- RECEIVER DISPLAY TABS -->
         <div class="lcd-tabs">
           <div class="lcd-tab active" onclick="switchTab(0)">MANIFIESTO</div>
           <div class="lcd-tab" onclick="switchTab(1)">EJES</div>
@@ -412,7 +410,6 @@
           <div class="lcd-tab" onclick="switchTab(3)">SOCIO</div>
         </div>
 
-        <!-- LCD CONTENT PANELS -->
         <div class="lcd-content">
           
           <!-- TAB 1: MANIFIESTO -->
@@ -430,7 +427,7 @@
             Preservación de prensajes históricos y mantenimiento técnico de audio vintage.</p>
             
             <p><b>[02] MERCADO PRIVADO Y COLECCIONISMO</b><br>
-            Intercambio ético de edicónes raras, descatalogadas e importaciones audiófilas.</p>
+            Intercambio ético de ediciones raras, descatalogadas e importaciones audiófilas.</p>
             
             <p><b>[03] CULTURA DE ESCUCHA (LISTENING SESSIONS)</b><br>
             Sesiones de escucha privada con acústica tratada y equipamiento de alta fidelidad.</p>
@@ -450,7 +447,7 @@
               <b>*** COMING SOON ***</b><br>
               <span style="font-size: 9px; opacity: 0.8;">PRÓXIMAMENTE MÁS INFORMACIÓN</span>
             </div>
-            <p>Registrate como socio para recibir notificaciones prioritarias.</p>
+            <p>Regístrate como socio para recibir notificaciones prioritarias.</p>
           </div>
 
           <!-- TAB 4: FORMULARIO REGISTRO -->
@@ -474,9 +471,9 @@
   </div>
 
   <script>
-    let isPlaying = true;
+    let isPlaying = false;
 
-    // Toggle Vinyl Spin and Tonearm Movement
+    // Toggle Turntable spin and mechanical tonearm position
     function toggleTurntable() {
       const vinyl = document.getElementById('vinyl');
       const tonearm = document.getElementById('tonearm');
@@ -501,7 +498,7 @@
       }
     }
 
-    // Tab Switching inside the Digital LCD Screen
+    // LCD Screen tab switching logic
     function switchTab(index) {
       const tabs = document.querySelectorAll('.lcd-tab');
       const panels = document.querySelectorAll('.lcd-panel');
@@ -516,13 +513,6 @@
         }
       });
     }
-
-    // Initialize playback position
-    document.addEventListener("DOMContentLoaded", () => {
-      document.getElementById('vinyl').classList.add('spinning');
-      document.getElementById('tonearm').classList.add('engaged');
-      document.getElementById('playBtn').classList.add('active');
-    });
   </script>
 </body>
 </html>
