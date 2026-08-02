@@ -1,639 +1,380 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>C.A.V.E. Tenerife - Technics 45 RPM Player</title>
-  <style>
-    /* --- MONOCHROME HI-FI COMPONENT PALETTE --- */
-    :root {
-      --chassis-bg: #000000;
-      --chassis-border: #ffffff;
-      --text-main: #ffffff;
-      --text-dim: #777777;
-      --groove-color: #222225;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estatutos Oficiales | C.A.V.E. Tenerife</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0d0d0d;
+            --surface-color: #141414;
+            --border-color: #262626;
+            --text-main: #e5e5e5;
+            --text-muted: #a3a3a3;
+            --accent: #d4af37; /* Warm Gold */
+            --accent-glow: rgba(212, 175, 55, 0.15);
+            --font-heading: 'Syne', sans-serif;
+            --font-body: 'Space Grotesk', sans-serif;
+        }
 
-    * {
-      box-sizing: border-box;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    body {
-      background-color: #050505;
-      color: var(--text-main);
-      margin: 0;
-      padding: 12px;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.7;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
 
-    /* --- HI-FI SYSTEM CONTAINER --- */
-    .hifi-system {
-      width: 100%;
-      max-width: 420px;
-      background: #0d0d0d;
-      border: 2px solid var(--chassis-border);
-      border-radius: 8px;
-      padding: 16px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.9);
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
+        /* Subtle background vinyl groove pattern */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle at 50% 50%, rgba(20, 20, 20, 0.5) 0%, rgba(13, 13, 13, 1) 80%),
+                        repeating-radial-gradient(circle at 50% 50%, transparent 0, transparent 3px, rgba(255, 255, 255, 0.015) 4px, transparent 5px);
+            z-index: -1;
+            pointer-events: none;
+        }
 
-    /* --- TURNTABLE DECK --- */
-    .technics-deck-area {
-      background: #111111;
-      border: 1px solid #333333;
-      border-radius: 6px;
-      padding: 12px;
-      position: relative;
-      height: 280px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      cursor: grab;
-    }
+        .container {
+            max-width: 900px;
+            width: 100%;
+            padding: 3rem 1.5rem;
+        }
 
-    .technics-deck-area:active {
-      cursor: grabbing;
-    }
+        header {
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 2.5rem;
+            margin-bottom: 3rem;
+        }
 
-    /* MAIN TURNTABLE PLATTER WITH OUTER WHITE/SILVER BEZEL */
-    .technics-platter {
-      width: 240px;
-      height: 240px;
-      border-radius: 50%;
-      background: radial-gradient(circle, #18181a 68%, #0d0d0f 70%);
-      border: 5px solid #e0e0e0;
-      box-shadow: inset 0 0 10px rgba(0,0,0,0.9), 0 0 12px rgba(0,0,0,0.8);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      transform-origin: center center;
-      will-change: transform;
-    }
+        .badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 0.35rem 0.8rem;
+            margin-bottom: 1rem;
+            background: var(--accent-glow);
+        }
 
-    /* BLACK FELT SLIPMAT WITH CONCENTRIC TEXTURED RINGS */
-    .slipmat {
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      background: repeating-radial-gradient(
-        circle at center,
-        #1a1a1d 0px,
-        #1a1a1d 2px,
-        #121214 3px,
-        #121214 5px
-      );
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      box-shadow: inset 0 0 15px rgba(0,0,0,0.95);
-    }
+        h1 {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
 
-    /* ACCURATELY SCALED 7-INCH VINYL RECORD */
-    .vinyl-record-7inch {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      background: repeating-radial-gradient(
-        circle at center,
-        #08080a 0px,
-        #08080a 2px,
-        var(--groove-color) 3px,
-        #08080a 4px
-      );
-      box-shadow: 0 0 10px rgba(0,0,0,0.9), 0 0 2px rgba(255,255,255,0.3);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      z-index: 2;
-    }
+        .subtitle {
+            font-size: 1rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-    /* LARGE 45 RPM CENTER HOLE & GRADIENT LABEL (GRADIENT DERIVED FROM IMAGE) */
-    .large-center-hole {
-      width: 76px;
-      height: 76px;
-      border-radius: 50%;
-      background: radial-gradient(circle, #ffcc00 0%, #ff5500 70%, #cc2200 100%);
-      border: 3px solid #111111;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      box-shadow: 0 0 6px rgba(0,0,0,0.5);
-    }
+        nav.table-of-contents {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            margin-bottom: 3rem;
+        }
 
-    .rpm45-adapter-label {
-      width: 64px;
-      height: 64px;
-      background: transparent;
-      border-radius: 50%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: #000000;
-      font-size: 6px;
-      font-weight: 900;
-      letter-spacing: 0.3px;
-      pointer-events: none;
-      line-height: 1.15;
-    }
+        nav.table-of-contents h3 {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
 
-    .center-spindle {
-      width: 8px;
-      height: 8px;
-      background: #e6e6e6;
-      border-radius: 50%;
-      border: 1px solid #000;
-      position: absolute;
-      z-index: 4;
-      pointer-events: none;
-    }
+        nav.table-of-contents ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.5rem 1.5rem;
+        }
 
-    /* --- BENT / S-SHAPED TONEARM IMPLEMENTATION --- */
-    .tonearm-assembly {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      width: 140px;
-      height: 220px;
-      pointer-events: none;
-      z-index: 5;
-    }
+        nav.table-of-contents a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
 
-    /* Base Pivot Assembly */
-    .tonearm-base {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: radial-gradient(circle, #d0d0d0 30%, #777777 70%, #333333 100%);
-      border: 2px solid #222222;
-      box-shadow: 2px 4px 8px rgba(0,0,0,0.6);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+        nav.table-of-contents a:hover {
+            color: var(--accent);
+        }
 
-    .tonearm-pivot-inner {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: radial-gradient(circle, #ffffff 20%, #aaaaaa 80%);
-      border: 2px solid #555555;
-    }
+        section {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
 
-    /* Metallic Curved S-Arm */
-    .tonearm-arm {
-      position: absolute;
-      top: 22px;
-      right: 22px;
-      width: 100px;
-      height: 150px;
-      border: 5px solid transparent;
-      border-left: 5px solid #d8d8d8;
-      border-bottom: 5px solid #d8d8d8;
-      border-radius: 0 0 0 80px;
-      transform: rotate(-18deg);
-      transform-origin: top right;
-      filter: drop-shadow(2px 3px 3px rgba(0,0,0,0.5));
-    }
+        h2 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
 
-    /* Headshell & Cartridge Assembly */
-    .tonearm-headshell {
-      position: absolute;
-      bottom: -10px;
-      left: -12px;
-      width: 18px;
-      height: 32px;
-      background: #222222;
-      border: 1px solid #555555;
-      border-radius: 2px;
-      transform: rotate(35deg);
-      box-shadow: 1px 2px 4px rgba(0,0,0,0.7);
-    }
+        h3 {
+            font-size: 1.05rem;
+            color: #ffffff;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
 
-    .headshell-connector {
-      position: absolute;
-      top: -6px;
-      left: 3px;
-      width: 10px;
-      height: 6px;
-      background: #cccccc;
-      border-radius: 1px;
-    }
+        p {
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
 
-    .finger-lift {
-      position: absolute;
-      bottom: 2px;
-      right: -8px;
-      width: 10px;
-      height: 2px;
-      background: #cccccc;
-      border-radius: 1px;
-    }
+        ul, ol {
+            margin-left: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
 
-    /* TRIGGER CONTROL BAR */
-    .trigger-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #000000;
-      border: 1px solid #333333;
-      border-radius: 4px;
-      padding: 8px 12px;
-    }
+        li {
+            margin-bottom: 0.5rem;
+        }
 
-    .trigger-label {
-      font-size: 10px;
-      letter-spacing: 1px;
-      color: var(--text-main);
-      font-family: monospace;
-      font-weight: bold;
-    }
+        .highlight {
+            color: #ffffff;
+            font-weight: 600;
+        }
 
-    .trigger-btn {
-      background: #000000;
-      border: 1px solid #ffffff;
-      color: #ffffff;
-      padding: 6px 14px;
-      font-size: 10px;
-      font-weight: bold;
-      font-family: monospace;
-      cursor: pointer;
-      border-radius: 2px;
-      transition: background 0.2s ease, color 0.2s ease;
-    }
+        footer {
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            padding-top: 2rem;
+            margin-top: 3rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
 
-    .trigger-btn:active {
-      transform: scale(0.97);
-    }
+        @media (max-width: 600px) {
+            .container {
+                padding: 1.5rem 1rem;
+            }
 
-    .trigger-btn.active {
-      background: #ffffff;
-      color: #000000;
-    }
+            section {
+                padding: 1.25rem;
+            }
 
-    /* --- RECEIVER DISPLAY SCREEN --- */
-    .receiver-display-unit {
-      background: #000000;
-      border: 1px solid #ffffff;
-      border-radius: 6px;
-      padding: 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .lcd-screen {
-      background-color: #000000;
-      color: var(--text-main);
-      font-family: "Courier New", Courier, monospace;
-      min-height: 210px;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    .lcd-header {
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px dashed var(--text-dim);
-      padding-bottom: 4px;
-      margin-bottom: 8px;
-      font-size: 10px;
-      letter-spacing: 1px;
-    }
-
-    .lcd-tabs {
-      display: flex;
-      gap: 4px;
-      border-bottom: 1px solid #ffffff;
-      padding-bottom: 6px;
-      margin-bottom: 10px;
-    }
-
-    .lcd-tab {
-      flex: 1;
-      background: #000000;
-      border: 1px solid var(--text-dim);
-      color: var(--text-dim);
-      padding: 6px 2px;
-      font-size: 10px;
-      text-align: center;
-      cursor: pointer;
-      font-weight: bold;
-      border-radius: 2px;
-    }
-
-    .lcd-tab.active {
-      background: #ffffff;
-      color: #000000;
-      border-color: #ffffff;
-    }
-
-    .lcd-content {
-      flex: 1;
-      overflow-y: auto;
-      font-size: 11px;
-      line-height: 1.4;
-    }
-
-    .lcd-panel {
-      display: none;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .lcd-panel.active {
-      display: flex;
-    }
-
-    .lcd-title {
-      font-weight: bold;
-      text-transform: uppercase;
-      border-bottom: 1px dotted var(--text-dim);
-      padding-bottom: 2px;
-      margin-bottom: 4px;
-    }
-
-    .lcd-input {
-      background: #000000;
-      border: 1px solid var(--text-dim);
-      color: #ffffff;
-      padding: 6px;
-      font-family: monospace;
-      font-size: 11px;
-      outline: none;
-      width: 100%;
-      margin-top: 2px;
-      margin-bottom: 6px;
-    }
-
-    .lcd-input:focus {
-      border-color: #ffffff;
-    }
-
-    .lcd-btn {
-      background: #000000;
-      border: 1px solid #ffffff;
-      color: #ffffff;
-      padding: 8px;
-      font-family: monospace;
-      font-weight: bold;
-      font-size: 11px;
-      cursor: pointer;
-      margin-top: 4px;
-      text-align: center;
-    }
-
-    .lcd-btn:active {
-      background: #ffffff;
-      color: #000000;
-    }
-  </style>
+            h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <div class="hifi-system">
-    
-    <!-- TURNTABLE DECK AREA -->
-    <div class="technics-deck-area" id="deck">
+<div class="container">
 
-      <!-- ROTATING PLATTER WITH VINYL -->
-      <div class="technics-platter" id="platter">
-        <div class="slipmat" id="slipmat">
-          
-          <div class="vinyl-record-7inch">
-            <div class="large-center-hole">
-              <div class="rpm45-adapter-label">
-                <span>C.A.V.E.</span>
-                <span style="font-size: 7px; margin: 1px 0;">45 RPM</span>
-                <span>TENERIFE</span>
-              </div>
-            </div>
-          </div>
+    <header>
+        <div class="badge">Documento Oficial de Constitución</div>
+        <h1>Estatutos de la Asociación Cultural</h1>
+        <div class="subtitle">Club de Aficionados al Vinilo Exclusivo (C.A.V.E.) — Tenerife</div>
+    </header>
 
-        </div>
-      </div>
+    <nav class="table-of-contents">
+        <h3>Índice de los Estatutos</h3>
+        <ul>
+            <li><a href="#titulo1">Título I: Denominación, Duración y Domicilio</a></li>
+            <li><a href="#titulo2">Título II: Fines y Actividades</a></li>
+            <li><a href="#titulo3">Título III: De los Socios y Régimen Disciplinario</a></li>
+            <li><a href="#titulo4">Título IV: Órganos de Gobierno</a></li>
+            <li><a href="#titulo5">Título V: Régimen Económico y Documental</a></li>
+            <li><a href="#titulo6">Título VI: Disolución y Liquidación</a></li>
+        </ul>
+    </nav>
 
-      <div class="center-spindle"></div>
-
-      <!-- BENT TONEARM OVERLAY -->
-      <div class="tonearm-assembly">
-        <div class="tonearm-base">
-          <div class="tonearm-pivot-inner"></div>
-        </div>
-        <div class="tonearm-arm">
-          <div class="tonearm-headshell">
-            <div class="headshell-connector"></div>
-            <div class="finger-lift"></div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- TRIGGER BUTTON BAR -->
-    <div class="trigger-bar">
-      <span class="trigger-label">MOTOR: <span id="motorStateText">STOPPED</span></span>
-      <button class="trigger-btn" id="triggerBtn" onclick="toggleMotor()">TRIGGER SPIN</button>
-    </div>
-
-    <!-- RECEIVER DISPLAY SCREEN -->
-    <div class="receiver-display-unit">
-      
-      <div class="lcd-screen">
+    <!-- TÍTULO I -->
+    <section id="titulo1">
+        <h2>Título I: Denominación, Naturaleza, Duración, Domicilio y Ámbito</h2>
         
-        <div class="lcd-header">
-          <span>CH-01: C.A.V.E. HI-FI</span>
-          <span id="statusIndicator">PAUSED // STANDBY</span>
-        </div>
+        <h3>Artículo 1. Denominación y Naturaleza</h3>
+        <p>Con la denominación <span class="highlight">Club de Aficionados al Vinilo Exclusivo (C.A.V.E.)</span>, se constituye una asociación cultural sin ánimo de lucro, al amparo de la legislación vigente reguladora del Derecho de Asociación, dotada de personalidad jurídica propia y plena capacidad de obrar para el cumplimiento de sus fines.</p>
+        
+        <h3>Artículo 2. Duración</h3>
+        <p>La asociación se constituye por <span class="highlight">tiempo indefinido</span>, iniciando sus actividades a partir de la fecha del otorgamiento de su Acta Fundacional.</p>
+        
+        <h3>Artículo 3. Domicilio Social y Ámbito de Actuación</h3>
+        <ol>
+            <li>El domicilio social de la asociación se establece en <span class="highlight">Tenerife, Islas Canarias, España</span>.</li>
+            <li>El ámbito territorial en el que desarrollará principalmente sus actividades es <span class="highlight">Autonómico (Canarias)</span>, sin perjuicio de proyectar sus actuaciones, alianzas e intercambios a nivel nacional e internacional.</li>
+        </ol>
+    </section>
 
-        <div class="lcd-tabs">
-          <div class="lcd-tab active" onclick="switchTab(0)">MANIFIESTO</div>
-          <div class="lcd-tab" onclick="switchTab(1)">EJES</div>
-          <div class="lcd-tab" onclick="switchTab(2)">AGENDA</div>
-          <div class="lcd-tab" onclick="switchTab(3)">SOCIO</div>
-        </div>
+    <!-- TÍTULO II -->
+    <section id="titulo2">
+        <h2>Título II: Fines y Actividades</h2>
+        
+        <h3>Artículo 4. Fines Principales</h3>
+        <p>La asociación persigue los siguientes objetivos primordiales:</p>
+        <ul>
+            <li><span class="highlight">Preservación del Patrimonio Analógico:</span> Promover, salvaguardar y poner en valor la música en soporte analógico y su cultura dentro de un entorno sociocultural eminentemente digitalizado.</li>
+            <li><span class="highlight">Dinamización del Mercado del Vinilo:</span> Facilitar a la comunidad la adquisición, el intercambio, la venta responsable y la localización de ediciones exclusivas, descatalogadas o de alta fidelidad.</li>
+            <li><span class="highlight">Divulgación y Formación:</span> Organizar eventos culturales, talleres (<em>workshops</em>), sesiones de escucha (<em>listening sessions</em>), <em>jam sessions</em> y tiendas efímeras (<em>pop-up stores</em>).</li>
+            <li><span class="highlight">Tejido Local y Colaboración:</span> Fomentar alianzas estratégicas con tiendas de discos independientes, comercios locales, artistas y artesanos del sector del audio en Tenerife.</li>
+            <li><span class="highlight">Revalorización del Arte Físico:</span> Destacar la dimensión artística integral del disco de vinilo (arte de portada, prensado, notas de encastre y el ritual de escucha).</li>
+        </ul>
 
-        <div class="lcd-content">
-          
-          <!-- TAB 1: MANIFIESTO -->
-          <div class="lcd-panel active">
-            <div class="lcd-title">> C.A.V.E. TENERIFE // MANIFIESTO</div>
-            <p><b>[RESISTENCIA ANALÓGICA EN EL ATLÁNTICO]</b></p>
-            <p>En un ecosistema hiperconectado de consumo digital efímero, C.A.V.E. (Club de Aficionados al Vinilo Exclusivo) opera como una institución subterránea dedicada al culto, preservación y escucha audiófila del formato físico.</p>
-            <p>Sede central: Tenerife, Islas Canarias.<br>Estado: Operativo.</p>
-          </div>
+        <h3>Artículo 5. Actividades</h3>
+        <p>Para la consecución de sus fines, el Club desarrollará las siguientes líneas de acción:</p>
+        <ul>
+            <li>Mercados e intercambios periódicos de vinilos para socios y público general.</li>
+            <li>Sesiones de escucha guiadas con equipos de alta fidelidad (Hi-Fi).</li>
+            <li>Talleres de conservación de discos, calibración de giradiscos y restauración de equipos de sonido vintage.</li>
+            <li>Encuentros musicales, eventos en vivo y <em>jam sessions</em>.</li>
+            <li><em>Pop-up stores</em> y muestras itinerantes en colaboración con comercios y espacios de la comunidad.</li>
+        </ul>
+    </section>
 
-          <!-- TAB 2: EJES ESTATUTARIOS & BENEFICIOS -->
-          <div class="lcd-panel">
-            <div class="lcd-title">> EJES ESTATUTARIOS</div>
-            <p><b>[01] ARCHIVO Y CONSERVACIÓN TÉCNICA</b><br>
-            Preservación de prensajes históricos y mantenimiento técnico de audio vintage.</p>
-            
-            <p><b>[02] MERCADO PRIVADO Y COLECCIONISMO</b><br>
-            Intercambio ético de ediciones raras, descatalogadas e importaciones audiófilas.</p>
-            
-            <p><b>[03] CULTURA DE ESCUCHA (LISTENING SESSIONS)</b><br>
-            Sesiones de escucha privada con acústica tratada y equipamiento de alta fidelidad.</p>
+    <!-- TÍTULO III -->
+    <section id="titulo3">
+        <h2>Título III: De los Socios: Admisión, Pérdida de Condición y Régimen Disciplinario</h2>
+        
+        <h3>Artículo 6. Categorías de Socios</h3>
+        <ul>
+            <li><span class="highlight">Socios Fundadores:</span> Quienes firmen el Acta Fundacional.</li>
+            <li><span class="highlight">Socios Numéricos (Activos):</span> Personas físicas que soliciten su ingreso, sean admitidas por la Junta Directiva y estén al día con sus cuotas.</li>
+            <li><span class="highlight">Socios Protectores / Colaboradores:</span> Personas físicas o jurídicas que apoyen económicamente o con recursos a la asociación.</li>
+            <li><span class="highlight">Socios de Honor:</span> Personas o entidades reconocidas por su notable contribución a la preservación del audio analógico.</li>
+        </ul>
 
-            <div class="lcd-title" style="margin-top:8px;">> BENEFICIOS DE SOCIO</div>
-            <p>• Prioridad en Listening Sessions privadas.<br>
-            • Acceso a la red de trueque entre coleccionistas.<br>
-            • Descuentos en tiendas locales afiliadas.<br>
-            • Uso de herramientas del club (limpiadoras ultrasónicas, galgas, calibradores).</p>
-          </div>
+        <h3>Artículo 7. Admisión de Socios</h3>
+        <p>Para adquirir la condición de socio se requerirá ser persona física con plena capacidad de obrar (o menor emancipado), presentar solicitud por escrito a la Junta Directiva y ser aceptado formalmente por la misma.</p>
 
-          <!-- TAB 3: AGENDA -->
-          <div class="lcd-panel">
-            <div class="lcd-title">> PROGRAMACIÓN DE EVENTOS</div>
-            <p>Próximos encuentros, Listening Sessions y Pop-Up Stores en Tenerife...</p>
-            <div style="border: 1px dashed var(--text-dim); padding: 12px; text-align: center; margin: 10px 0;">
-              <b>*** COMING SOON ***</b><br>
-              <span style="font-size: 9px; opacity: 0.8;">PRÓXIMAMENTE MÁS INFORMACIÓN</span>
-            </div>
-            <p>Regístrate como socio para recibir notificaciones prioritarias.</p>
-          </div>
+        <h3>Artículo 8. Derechos de los Socios</h3>
+        <ul>
+            <li>Participar en las actividades, eventos, talleres y <em>pop-ups</em> de la asociación.</li>
+            <li>Disfrutar de acceso prioritario a los mercados de intercambio de C.A.V.E.</li>
+            <li>Ejercer el derecho a voz y voto en las Asambleas Generales (un voto por socio).</li>
+            <li>Elegir y ser elegibles para los cargos de la Junta Directiva.</li>
+            <li>Formular peticiones, sugerencias y examinar los libros oficiales de la asociación previa solicitud formal.</li>
+        </ul>
 
-          <!-- TAB 4: FORMULARIO REGISTRO -->
-          <div class="lcd-panel">
-            <div class="lcd-title">> ADMISIÓN DE NUEVO SOCIO</div>
-            <label>NOMBRE COMPLETO:</label>
-            <input type="text" class="lcd-input" placeholder="Tu nombre...">
-            <label>CORREO DE CONTACTO:</label>
-            <input type="email" class="lcd-input" placeholder="correo@ejemplo.com">
-            <label>INTERESES MUSICALES / HI-FI:</label>
-            <input type="text" class="lcd-input" placeholder="Ej. Jazz, Audiophile Pressings...">
-            <div class="lcd-btn" onclick="alert('Solicitud enviada a la junta directiva de C.A.V.E.');">SOLICITAR INGRESO AL CLUB</div>
-          </div>
+        <h3>Artículo 9. Deberes de los Socios</h3>
+        <ul>
+            <li>Acatar los presentes Estatutos y los acuerdos válidamente adoptados por los órganos de gobierno.</li>
+            <li>Abonar puntualmente las cuotas periódicas y extraordinarias que fije la Asamblea General.</li>
+            <li>Colaborar en la consecución de los fines del Club y mantener una conducta ética en el intercambio de material discográfico.</li>
+        </ul>
 
-        </div>
+        <h3>Artículo 10. Pérdida de la Condición de Socio</h3>
+        <p>La condición de socio se perderá por cualquiera de las siguientes causas:</p>
+        <ol>
+            <li>Renuncia voluntaria comunicada por escrito a la Junta Directiva.</li>
+            <li>Impago injustificado de dos cuotas consecutivas, previo requerimiento formal.</li>
+            <li>Sanción de expulsión acordada por la Junta Directiva en expediente disciplinario.</li>
+        </ol>
 
-      </div>
+        <h3>Artículo 11. Régimen Disciplinario</h3>
+        <ol>
+            <li>Los socios podrán ser sancionados por el incumplimiento grave y reiterado de los Estatutos o por conductas que perjudiquen gravemente la imagen o el patrimonio del Club.</li>
+            <li>Las sanciones podrán ir desde la amonestación verbal o suspensión temporal de derechos, hasta la <span class="highlight">expulsión definitiva</span>.</li>
+            <li>Todo procedimiento disciplinario garantizará el derecho de audiencia al interesado, requiriéndose la notificación de los cargos, un plazo de <span class="highlight">10 días hábiles</span> para presentar alegaciones y la posterior resolución motivada por parte de la Junta Directiva. El sancionado podrá recurrir la decisión ante la primera Asamblea General que se celebre.</li>
+        </ol>
+    </section>
 
-    </div>
+    <!-- TÍTULO IV -->
+    <section id="titulo4">
+        <h2>Título IV: Órganos de Gobierno y Administración</h2>
+        
+        <h3>Artículo 12. La Asamblea General</h3>
+        <p>La Asamblea General es el órgano supremo de gobierno de la asociación y estará integrada por todos los socios. Sus acuerdos son de obligado cumplimiento para la totalidad de sus miembros.</p>
 
-  </div>
+        <h3>Artículo 13. Convocatoria y Quórum de la Asamblea General</h3>
+        <ol>
+            <li><span class="highlight">Asamblea General Ordinaria:</span> Se reunirá obligatoriamente una vez al año dentro del primer cuatrimestre para aprobar la gestión de la Junta Directiva, las cuentas del ejercicio anterior y el presupuesto del año en curso.</li>
+            <li><span class="highlight">Asamblea General Extraordinaria:</span> Se convocará cuando la Junta Directiva lo estime conveniente o cuando lo solicite al menos el 20% de los socios.</li>
+            <li><span class="highlight">Convocatoria:</span> Las Asambleas serán convocadas con al menos 15 días naturales de antelación mediante comunicación escrita (física o electrónica), incluyendo el Orden del Día.</li>
+            <li><span class="highlight">Quórum:</span> Quedará válidamente constituida en primera convocatoria cuando concurran a ella (presentes o representados) la mayoría absoluta de los socios (50% + 1). En segunda convocatoria (celebrada 30 minutos más tarde), quedará constituida cualquiera que sea el número de socios presentes.</li>
+        </ol>
 
-  <script>
-    const platter = document.getElementById('platter');
-    const deck = document.getElementById('deck');
-    const triggerBtn = document.getElementById('triggerBtn');
-    const motorStateText = document.getElementById('motorStateText');
-    const statusIndicator = document.getElementById('statusIndicator');
+        <h3>Artículo 14. Adopción de Acuerdos de la Asamblea</h3>
+        <ol>
+            <li>Salvo disposición legal o estatutaria contraria, los acuerdos ordinarios se adoptarán por mayoría simple de votos emitidos.</li>
+            <li>Se requerirá una <span class="highlight">mayoría cualificada de 2/3</span> de las personas presentes o representadas para la modificación de Estatutos, disolución de la asociación o disposición/enajenación de bienes del patrimonio.</li>
+        </ol>
 
-    let isSpinning = false;
-    let currentRotation = 0;
-    let isTouching = false;
-    let lastAngle = 0;
-    
-    // 45 RPM rotation speed (~2.7 degrees per frame at 60fps)
-    const rpmSpeed = 45 / 60 * 360 / 60;
+        <h3>Artículo 15. La Junta Directiva</h3>
+        <p>La Junta Directiva es el órgano colegiado de representación, gestión y administración de la asociación. Estará formada por: Presidencia, Vicepresidencia, Secretaría, Tesorería y Vocalías (ej. Vocal de Eventos, Vocal de Relaciones Locales).</p>
 
-    // Toggle Motor Spinning via Trigger Button
-    function toggleMotor() {
-      isSpinning = !isSpinning;
+        <h3>Artículo 16. Duración y Elección de Cargos</h3>
+        <ol>
+            <li>Los miembros de la Junta Directiva serán elegidos por la Asamblea General por un período de <span class="highlight">2 años</span>, pudiendo ser reelegidos.</li>
+            <li>Los cargos de la Junta Directiva serán gratuitos y no remunerados, sin perjuicio del reembolso de los gastos debidamente justificados.</li>
+        </ol>
+    </section>
 
-      if (isSpinning) {
-        triggerBtn.classList.add('active');
-        motorStateText.textContent = 'RUNNING';
-        if (!isTouching) statusIndicator.textContent = 'PLAYING // 45 RPM';
-      } else {
-        triggerBtn.classList.remove('active');
-        motorStateText.textContent = 'STOPPED';
-        if (!isTouching) statusIndicator.textContent = 'PAUSED // STANDBY';
-      }
-    }
+    <!-- TÍTULO V -->
+    <section id="titulo5">
+        <h2>Título V: Régimen Económico y Documental</h2>
+        
+        <h3>Artículo 17. Patrimonio Inicial y Recursos Económicos</h3>
+        <p>El patrimonio inicial de la asociación en el momento de su constitución se fija en 0 €. Los recursos económicos de la asociación estarán constituidos por:</p>
+        <ul>
+            <li>Las cuotas periódicas y extraordinarias fijadas por la Asamblea General.</li>
+            <li>Los ingresos derivados de eventos, talleres, <em>pop-up stores</em> y publicaciones.</li>
+            <li>Subvenciones, donaciones, herencias o legados recibidos legalmente.</li>
+            <li>Patrocinios y aportaciones de socios protectores o empresas colaboradoras.</li>
+        </ul>
 
-    // Animation loop for platter rotation
-    function animatePlatter() {
-      if (isSpinning && !isTouching) {
-        currentRotation += rpmSpeed;
-        platter.style.transform = `rotate(${currentRotation}deg)`;
-      }
-      requestAnimationFrame(animatePlatter);
-    }
-    requestAnimationFrame(animatePlatter);
+        <h3>Artículo 18. Ejercicio Económico y Contabilidad</h3>
+        <ol>
+            <li>El ejercicio económico coincidirá con el año natural, cerrándose el <span class="highlight">31 de diciembre</span> de cada año.</li>
+            <li>La asociación llevará una contabilidad regular a través del Libro de Socios, Libro de Actas y Libros de Contabilidad (Balance, Ingresos y Gastos).</li>
+        </ol>
+    </section>
 
-    // Angle calculation relative to center
-    function getAngle(x, y) {
-      const rect = platter.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      const rad = Math.atan2(y - centerY, x - centerX);
-      return rad * (180 / Math.PI);
-    }
+    <!-- TÍTULO VI -->
+    <section id="titulo6">
+        <h2>Título VI: Disolución y Liquidación</h2>
+        
+        <h3>Artículo 19. Disolución</h3>
+        <p>La asociación se disolverá por acuerdo expreso adoptado en Asamblea General Extraordinaria convocada al efecto, con el voto favorable de al menos 2/3 de los presentes o representados, o por las causas determinadas en la ley.</p>
 
-    // Touch & Scratch Controls
-    function handlePointerDown(e) {
-      isTouching = true;
-      const pointer = e.touches ? e.touches[0] : e;
-      lastAngle = getAngle(pointer.clientX, pointer.clientY);
-      statusIndicator.textContent = 'HOLDING // SCRATCHING';
-    }
+        <h3>Artículo 20. Liquidación y Destino del Patrimonio</h3>
+        <p>En caso de disolución, tras abonar las deudas pendientes, el <span class="highlight">patrimonio neto resultante se donará íntegramente a una entidad sin ánimo de lucro</span> legalmente reconocida de carácter cultural o social que persiga fines análogos en el archipiélago canario. En ningún caso los bienes podrán ser repartidos entre los socios.</p>
+    </section>
 
-    function handlePointerMove(e) {
-      if (!isTouching) return;
-      const pointer = e.touches ? e.touches[0] : e;
-      const currentAngle = getAngle(pointer.clientX, pointer.clientY);
-      let deltaAngle = currentAngle - lastAngle;
+    <footer>
+        <p>&copy; Club de Aficionados al Vinilo Exclusivo (C.A.V.E.) — Santa Cruz de Tenerife / La Laguna, Tenerife.</p>
+        <p>Documento de estatutos adaptado para la presentación oficial de la asociación.</p>
+    </footer>
 
-      if (deltaAngle > 180) deltaAngle -= 360;
-      if (deltaAngle < -180) deltaAngle += 360;
+</div>
 
-      currentRotation += deltaAngle;
-      platter.style.transform = `rotate(${currentRotation}deg)`;
-      lastAngle = currentAngle;
-    }
-
-    function handlePointerUp() {
-      if (isTouching) {
-        isTouching = false;
-        statusIndicator.textContent = isSpinning ? 'PLAYING // 45 RPM' : 'PAUSED // STANDBY';
-      }
-    }
-
-    // Event Listeners
-    deck.addEventListener('mousedown', handlePointerDown);
-    window.addEventListener('mousemove', handlePointerMove);
-    window.addEventListener('mouseup', handlePointerUp);
-
-    deck.addEventListener('touchstart', handlePointerDown, { passive: true });
-    window.addEventListener('touchmove', handlePointerMove, { passive: true });
-    window.addEventListener('touchend', handlePointerUp);
-
-    // Tab switcher
-    function switchTab(index) {
-      const tabs = document.querySelectorAll('.lcd-tab');
-      const panels = document.querySelectorAll('.lcd-panel');
-
-      tabs.forEach((tab, i) => {
-        if (i === index) {
-          tab.classList.add('active');
-          panels[i].classList.add('active');
-        } else {
-          tab.classList.remove('active');
-          panels[i].classList.remove('active');
-        }
-      });
-    }
-  </script>
 </body>
 </html>
